@@ -395,73 +395,32 @@
   }
 }
 
-/* Candidate styles (spec 006): "Luminos" (Apple-inspired) and "Nocturn" (Linear-inspired). */
+/* Candidate designs (spec 007): the services index and contact page are shared with them. */
 
-:global([data-stil="luminos"]) .posts,
-:global([data-stil="nocturn"]) .posts,
 :global([data-stil="luminos"]) .services,
 :global([data-stil="nocturn"]) .services {
   display: grid;
   gap: 16px;
 }
 
-:global([data-stil="luminos"]) .post,
-:global([data-stil="nocturn"]) .post,
-:global([data-stil="luminos"]) .post:first-child,
-:global([data-stil="nocturn"]) .post:first-child,
 :global([data-stil="luminos"]) .services li,
 :global([data-stil="nocturn"]) .services li,
 :global([data-stil="luminos"]) .services li:first-child,
-:global([data-stil="nocturn"]) .services li:first-child,
-:global([data-stil="luminos"]) .card,
-:global([data-stil="nocturn"]) .card {
+:global([data-stil="nocturn"]) .services li:first-child {
   padding: 24px;
   border: var(--card-border);
   border-radius: var(--radius);
   background: var(--tint);
 }
 
-:global([data-stil="luminos"]) .post,
-:global([data-stil="nocturn"]) .post,
-:global([data-stil="luminos"]) .post:first-child,
-:global([data-stil="nocturn"]) .post:first-child {
-  padding: 16px;
-}
-
-:global([data-stil="luminos"]) .postImage,
-:global([data-stil="nocturn"]) .postImage,
-:global([data-stil="luminos"]) .shot,
-:global([data-stil="nocturn"]) .shot {
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-:global([data-stil="luminos"]) .postMeta,
-:global([data-stil="nocturn"]) .postMeta {
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--muted);
-}
-
-:global([data-stil="luminos"]) .postTitle,
-:global([data-stil="nocturn"]) .postTitle {
-  font-size: 22px;
-}
-
-:global([data-stil="luminos"]) .postTitle a:hover,
-:global([data-stil="nocturn"]) .postTitle a:hover,
-:global([data-stil="luminos"]) .services h2 a:hover,
-:global([data-stil="nocturn"]) .services h2 a:hover,
-:global([data-stil="luminos"]) .card h3 a:hover,
-:global([data-stil="nocturn"]) .card h3 a:hover {
-  text-decoration: none;
-}
-
 :global([data-stil="luminos"]) .services h2,
 :global([data-stil="nocturn"]) .services h2 {
   font-size: 22px;
+}
+
+:global([data-stil="luminos"]) .services h2 a:hover,
+:global([data-stil="nocturn"]) .services h2 a:hover {
+  text-decoration: none;
 }
 
 :global([data-stil="luminos"]) .contactBig,
@@ -474,125 +433,4 @@
   font-size: 14px;
   text-transform: none;
   letter-spacing: 0;
-}
-
-:global([data-stil="luminos"]) .heroTitle,
-:global([data-stil="luminos"]) .heroLead,
-:global([data-stil="luminos"]) .heroText {
-  text-align: center;
-}
-
-:global([data-stil="luminos"]) .actions {
-  justify-content: center;
-}
-
-:global([data-stil="luminos"]) .heroTitle {
-  font-size: 64px;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-}
-
-:global([data-stil="nocturn"]) .heroTitle {
-  font-size: 60px;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-}
-
-:global([data-stil="luminos"]) .heroLead,
-:global([data-stil="nocturn"]) .heroLead {
-  color: var(--text);
-}
-
-:global([data-stil="luminos"]) .primary,
-:global([data-stil="nocturn"]) .primary,
-:global([data-stil="luminos"]) .secondary,
-:global([data-stil="nocturn"]) .secondary {
-  border-radius: var(--radius-control);
-  font-weight: 500;
-}
-
-:global([data-stil="luminos"]) .primary,
-:global([data-stil="nocturn"]) .primary {
-  border-color: var(--button-bg);
-}
-
-:global([data-stil="luminos"]) .primary:hover,
-:global([data-stil="nocturn"]) .primary:hover {
-  border-color: var(--button-hover);
-}
-
-:global([data-stil="nocturn"]) .secondary {
-  border-color: var(--line);
-  color: var(--text);
-}
-
-:global([data-stil="nocturn"]) .secondary:hover {
-  border-color: var(--muted);
-  background: var(--tint);
-  color: var(--text);
-}
-
-:global([data-stil="luminos"]) .block,
-:global([data-stil="nocturn"]) .block {
-  margin-top: 104px;
-}
-
-:global([data-stil="luminos"]) .blockHead h2 {
-  font-size: 40px;
-}
-
-:global([data-stil="luminos"]) .blockHead a,
-:global([data-stil="nocturn"]) .blockHead a {
-  font-weight: 500;
-  text-decoration: none;
-}
-
-:global([data-stil="luminos"]) .blockHead a:hover,
-:global([data-stil="nocturn"]) .blockHead a:hover {
-  text-decoration: underline;
-}
-
-:global([data-stil="luminos"]) .blockHead a::after {
-  content: " ›";
-}
-
-:global([data-stil="luminos"]) .cards,
-:global([data-stil="nocturn"]) .cards {
-  gap: 16px;
-}
-
-:global([data-stil="luminos"]) .card,
-:global([data-stil="nocturn"]) .card {
-  padding: 28px;
-}
-
-:global([data-stil="luminos"]) .card h3,
-:global([data-stil="nocturn"]) .card h3 {
-  font-size: 22px;
-}
-
-:global([data-stil="luminos"]) .about img,
-:global([data-stil="nocturn"]) .about img {
-  border-radius: var(--radius);
-}
-
-:global([data-stil="luminos"]) .certs img,
-:global([data-stil="nocturn"]) .certs img {
-  border-radius: 8px;
-}
-
-:global([data-stil="luminos"]) .shot {
-  border: 0;
-}
-
-@media (max-width: 640px) {
-  :global([data-stil="luminos"]) .heroTitle,
-  :global([data-stil="nocturn"]) .heroTitle {
-    font-size: 40px;
-  }
-
-  :global([data-stil="luminos"]) .blockHead h2,
-  :global([data-stil="nocturn"]) .blockHead h2 {
-    font-size: 30px;
-  }
 }

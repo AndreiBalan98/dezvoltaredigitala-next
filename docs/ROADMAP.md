@@ -56,13 +56,15 @@ reusable components, with a new header and footer.
 - [ ] **PO LOOK-CHECK** on phone and laptop: final yes for the demo
 - [x] STATE.md has a 5-step demo script (which pages to show, in which order) and the open questions
 
-## M4b — Three styles with a switcher · status: review · ~1.5 h
-**Outcome:** the PO can compare Editorial with two candidate styles (Apple- and Linear-inspired) on the
-whole site, switching from the home page (spec 006).
+## M4b — Two more designs with their own structure · status: review · ~4 h
+**Outcome:** the PO can compare Editorial with two complete redesigns (Apple- and Linear-inspired),
+switching from the home page (spec 007; spec 006's colour-only version was rejected).
 **Definition of Done:**
-- [x] both styles on every page, Editorial pixel-identical to before (0 differing pixels, 4 pages × 2 widths)
-- [x] `tests/styles.test.mjs`: switcher, head script behaviour, AA contrast for all three styles
-- [ ] **PO LOOK-CHECK** of the three styles on phone and laptop
+- [x] every page in both designs (70 built pages, 0 broken links of 4711)
+- [x] Editorial unchanged: 0 differing pixels on article, list, service page (375 + 1280) and calculator
+      (375); the home differs only in the switcher row
+- [x] `tests/styles.test.mjs`: proxy rules, every page per design, switcher placement, AA contrast
+- [ ] **PO LOOK-CHECK** of the three designs on phone and laptop
 
 ## After the demo (not now)
 Promote I0 → I1 (branches + PRs), contact form, production hosting decision, domain switch with the

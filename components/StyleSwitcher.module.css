@@ -1,28 +1,25 @@
-/* Style switcher (spec 006): a tiny, quiet row at the top right of the header, home page only. */
+/* Design switcher (spec 007): three tiny, quiet links. Each design places it at its top right. */
 
 .switcher {
   display: flex;
   justify-content: flex-end;
   gap: 2px;
-  padding-top: 4px;
   font-size: 11px;
   line-height: 1;
 }
 
 .option {
+  display: inline-block;
   padding: 4px 6px;
-  font: inherit;
   color: var(--muted);
-  background: none;
-  border: 0;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .option:hover {
   color: var(--text);
 }
 
-.option[aria-pressed="true"] {
+.option[aria-current="true"] {
   color: var(--text);
   text-decoration: underline;
   text-underline-offset: 3px;

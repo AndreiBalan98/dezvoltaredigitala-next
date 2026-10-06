@@ -99,71 +99,7 @@
   }
 }
 
-/* Candidate styles (spec 006): "Luminos" (Apple-inspired) and "Nocturn" (Linear-inspired). */
-
-:global([data-stil="luminos"]) .header {
-  background: #fbfbfd;
-  border-bottom: 1px solid var(--line);
-}
-
-:global([data-stil="nocturn"]) .header {
-  border-bottom: 1px solid var(--line);
-}
-
-:global([data-stil="luminos"]) .inner,
-:global([data-stil="nocturn"]) .inner {
-  min-height: 64px;
-}
-
-:global([data-stil="luminos"]) .logo img,
-:global([data-stil="nocturn"]) .logo img {
-  width: 120px;
-}
-
-/* The logo's dark teal is too dim on near-black. */
-:global([data-stil="nocturn"]) .logo img {
-  filter: brightness(1.5);
-}
-
-:global([data-stil="luminos"]) .link,
-:global([data-stil="nocturn"]) .link {
-  font-size: 14px;
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-:global([data-stil="nocturn"]) .link {
-  color: var(--muted);
-}
-
-:global([data-stil="luminos"]) .link:hover,
-:global([data-stil="nocturn"]) .link:hover {
-  text-decoration: none;
-}
-
-:global([data-stil="nocturn"]) .link:hover {
-  color: var(--text);
-}
-
-:global([data-stil="luminos"]) .cta,
-:global([data-stil="nocturn"]) .cta {
-  padding: 8px 16px;
-  border-color: var(--button-bg);
-  border-radius: var(--radius-control);
-  background: var(--button-bg);
-  color: var(--button-text);
-  font-size: 14px;
-}
-
-:global([data-stil="luminos"]) .cta:hover,
-:global([data-stil="nocturn"]) .cta:hover {
-  border-color: var(--button-hover);
-  background: var(--button-hover);
-}
-
-:global([data-stil="luminos"]) .toggle,
-:global([data-stil="nocturn"]) .toggle {
-  border-color: var(--line);
-  border-radius: var(--radius-control);
-  font-size: 15px;
+/* Design switcher (spec 007), home page only. */
+.switcher {
+  padding-top: 4px;
 }

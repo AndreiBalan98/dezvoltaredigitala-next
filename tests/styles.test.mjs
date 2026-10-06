@@ -1,78 +1,91 @@
-// Three candidate styles with a switcher (spec 006). Reads the build output, so it runs after `npm run build`.
+// Three designs: Editorial (default), Luminos and Nocturn, each with its own structure (spec 007).
+// Reads the build output, so it runs after `npm run build`.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { decide } from "../lib/design.ts";
 
 const root = (p) => new URL(`../${p}`, import.meta.url);
-const home = readFileSync(root(".next/server/app/index.html"), "utf8");
-const article = readFileSync(root(".next/server/app/finantare-sisteme-stocare-energie.html"), "utf8");
+const built = (urlPath) => `.next/server/app/${urlPath === "/" ? "index" : urlPath.slice(1, -1)}.html`;
+const read = (urlPath) => readFileSync(root(built(urlPath)), "utf8");
 
-test("the home page has the switcher with three buttons, Editorial pressed by default", () => {
-  const buttons = [...home.matchAll(/<button[^>]*aria-pressed="(true|false)"[^>]*>([^<]+)<\/button>/g)];
-  assert.deepEqual(
-    buttons.map((b) => [b[2], b[1]]),
-    [
-      ["Editorial", "true"],
-      ["Luminos", "false"],
-      ["Nocturn", "false"],
-    ],
-  );
+const paths = ["pages", "posts"].flatMap((dir) =>
+  readdirSync(root(`content/${dir}`))
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => JSON.parse(readFileSync(root(`content/${dir}/${f}`), "utf8")).path),
+);
+
+// --- proxy.ts: which page tree serves a request ---
+test("no cookie: Editorial, untouched", () => {
+  assert.deepEqual(decide("/contact/", "", undefined), { kind: "next" });
 });
 
-test("the switcher is on the home page only (PO decision)", () => {
-  assert.doesNotMatch(article, /aria-label="Stilul site-ului"/);
+test("design cookie: the same URL is served from that design's pages", () => {
+  assert.deepEqual(decide("/contact/", "", "nocturn"), { kind: "rewrite", path: "/nocturn/contact/" });
+  assert.deepEqual(decide("/", "", "luminos"), { kind: "rewrite", path: "/luminos/" });
 });
 
-// --- The script in <head> that applies the style before the first paint ---
-const script = article.match(/<script>(try\{var v=\["editorial"[\s\S]*?)<\/script>/)?.[1];
+test("unknown or Editorial cookie: Editorial", () => {
+  assert.deepEqual(decide("/contact/", "", "xyz"), { kind: "next" });
+  assert.deepEqual(decide("/contact/", "", "editorial"), { kind: "next" });
+});
 
-function runScript({ search = "", stored = null, storageBlocked = false } = {}) {
-  const attrs = {};
-  const store = { stil: stored };
-  const localStorage = {
-    getItem: (k) => {
-      if (storageBlocked) throw new Error("blocked");
-      return store[k] ?? null;
-    },
-    setItem: (k, v) => {
-      if (storageBlocked) throw new Error("blocked");
-      store[k] = v;
-    },
-  };
-  const document = { documentElement: { setAttribute: (k, v) => (attrs[k] = v) } };
-  const location = { search, pathname: "/", hash: "" };
-  const history = { state: null, replaceState: (_s, _t, url) => (location.search = url.includes("?") ? url : "") };
-  new Function("document", "localStorage", "location", "history", "URLSearchParams", script)(
-    document,
-    localStorage,
-    location,
-    history,
-    URLSearchParams,
-  );
-  return { style: attrs["data-stil"], stored: store.stil, search: location.search };
+test("?stil= stores the design and redirects to the clean URL, keeping other parameters", () => {
+  assert.deepEqual(decide("/", "?stil=luminos", undefined), { kind: "redirect", url: "/", design: "luminos" });
+  assert.deepEqual(decide("/contact/", "?a=1&stil=editorial", "nocturn"), {
+    kind: "redirect",
+    url: "/contact/?a=1",
+    design: "editorial",
+  });
+  assert.deepEqual(decide("/", "?stil=xyz", undefined), { kind: "next" });
+});
+
+test("the designs' own addresses are not rewritten twice", () => {
+  assert.deepEqual(decide("/luminos/contact/", "", "nocturn"), { kind: "next" });
+});
+
+// --- Every page exists in every design ---
+for (const design of ["luminos", "nocturn"]) {
+  test(`${design}: all ${paths.length} pages are built in the design, with real content`, () => {
+    for (const p of paths) {
+      const file = built(`/${design}${p}`);
+      assert.ok(existsSync(root(file)), `${file} missing — run \`npm run build\` first`);
+      const html = readFileSync(root(file), "utf8");
+      assert.match(html, new RegExp(`data-stil="${design}"`), `${p} is not in the ${design} frame`);
+      assert.match(html, /<h1[^>]*>/, `${p} has no h1`);
+      assert.match(html, /noindex/, `${p} can be indexed`);
+    }
+  });
 }
 
-test("every page carries the style script", () => {
-  assert.ok(script, "style script missing from the article page");
-  assert.ok(home.includes(script), "style script missing from the home page");
+test("Editorial pages carry no candidate design", () => {
+  for (const p of paths) assert.doesNotMatch(read(p), /data-stil=/, p);
 });
 
-test("?stil= in the URL applies the style, remembers it and leaves the address", () => {
-  assert.deepEqual(runScript({ search: "?stil=nocturn" }), { style: "nocturn", stored: "nocturn", search: "" });
-});
+// --- The switcher: tiny links on each design's home page only ---
+// Visible markup only: the page's data scripts also carry the switcher for client-side navigation.
+const visible = (html) => html.replace(/<script[\s\S]*?<\/script>/g, "");
+const switcher = (html) =>
+  [...visible(html).matchAll(/<a[^>]*href="\/\?stil=(\w+)"[^>]*>/g)].map((m) => [m[1], m[0].includes('aria-current="true"')]);
 
-test("the remembered style applies when the URL has none", () => {
-  assert.deepEqual(runScript({ stored: "luminos" }), { style: "luminos", stored: "luminos", search: "" });
-});
+for (const [design, home] of [
+  ["editorial", "/"],
+  ["luminos", "/luminos/"],
+  ["nocturn", "/nocturn/"],
+]) {
+  test(`${design} home has the switcher with ${design} marked`, () => {
+    assert.deepEqual(switcher(read(home)), [
+      ["editorial", design === "editorial"],
+      ["luminos", design === "luminos"],
+      ["nocturn", design === "nocturn"],
+    ]);
+  });
+}
 
-test("an unknown style is ignored (Editorial)", () => {
-  assert.equal(runScript({ search: "?stil=xyz" }).style, undefined);
-  assert.equal(runScript({ stored: "xyz" }).style, undefined);
-});
-
-test("blocked storage (private window) does not break the page; the URL still works", () => {
-  assert.equal(runScript({ storageBlocked: true }).style, undefined);
-  assert.equal(runScript({ search: "?stil=luminos", storageBlocked: true }).style, "luminos");
+test("the switcher is not on other pages (PO decision)", () => {
+  for (const p of ["/contact/", "/luminos/contact/", "/nocturn/contact/"]) {
+    assert.doesNotMatch(visible(read(p)), /\?stil=/, p);
+  }
 });
 
 // --- Colour contrast of every style (WCAG AA: 4.5:1 for text) ---

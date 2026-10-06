@@ -29,8 +29,9 @@
   --heading-space: 56px;
 }
 
-/* Candidate styles (spec 006), chosen with the switcher on the home page. Same HTML; these override
-   the tokens above, and each CSS module adds its own rules for them at the end of the file. */
+/* Candidate designs (spec 007). Their layouts wrap every page in <div data-stil="…">; these tokens
+   restyle the shared blocks inside them (article bodies, calculator), and each design's own components
+   (components/luminos, components/nocturn) build the rest. */
 
 /* "Luminos" — inspired by Apple's product pages: white and light grey, rounded tiles, pill buttons. */
 [data-stil="luminos"] {
@@ -98,8 +99,27 @@
   color: #f7f8f8;
 }
 
-[data-stil="nocturn"] body {
+/* The wrapper restates the body's text settings, because the body resolved them with Editorial's tokens. */
+[data-stil="luminos"],
+[data-stil="nocturn"] {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+[data-stil="nocturn"] {
   color: #c9ced6;
+}
+
+body:has(> [data-stil="luminos"]) {
+  background: #ffffff;
+}
+
+body:has(> [data-stil="nocturn"]) {
+  background: #08090a;
 }
 
 *,
@@ -127,8 +147,8 @@ body {
     font-size: 17px;
   }
 
-  [data-stil="luminos"] body,
-  [data-stil="nocturn"] body {
+  [data-stil="luminos"],
+  [data-stil="nocturn"] {
     font-size: 16px;
   }
 }

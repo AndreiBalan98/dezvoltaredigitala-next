@@ -3,9 +3,10 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M4b — Three styles with a switcher (status: review — waiting for the PO's look-check);
+**Current milestone:** M4b — Two more designs with their own structure (status: review — waiting for the PO's look-check);
 M4 — Demo ready (built; its final look-check is folded into the same check)
-**Current spec:** docs/specs/006-three-styles.md (approved 2026-10-06, PO chose Apple/Linear inspiration)
+**Current spec:** docs/specs/007-two-redesigns.md (approved 2026-10-06; replaces spec 006, whose
+colour-only version the PO rejected: "just copies of the first one with different styles")
 **Branch:** main
 
 ## Where we are
@@ -35,21 +36,27 @@ M4 — Demo ready (built; its final look-check is folded into the same check)
   The only accessibility finding on every page: links inside paragraphs differ from text by colour
   only (no underline). Not fixed — above the bar; easy follow-up after the demo.
 
-- M4b built (spec 006): **three styles**, switched with three tiny words "Editorial Luminos Nocturn"
-  at the top right of the header, home page only (PO: "small, almost unnoticeable"); the choice is remembered on every page (browser storage).
-  - **Editorial** — the approved one, still the default; pixel-identical to before (0 differing pixels
-    vs the live site, 4 pages × 375/1280 px).
-  - **Luminos** — Apple-inspired: white/light grey, Inter font, rounded grey tiles, blue pill buttons,
-    centred big titles.
-  - **Nocturn** — Linear-inspired: near-black, Inter, hairline-bordered cards, light buttons, indigo links.
-  - A link can open a style directly: `/?stil=luminos`, `/?stil=nocturn`, `/?stil=editorial`.
-  - How: `<html data-stil>` set by a tiny script in `<head>` before paint (`app/layout.tsx`); tokens in
-    `app/globals.css`; per-style rules at the end of each CSS module (`:global([data-stil="…"])`).
-    Inter is not preloaded, so it is only downloaded when a new style is active.
-  - Check: `tests/styles.test.mjs` (switcher, head-script cases, AA contrast of all 3 styles) — proven
-    red by making Luminos grey too light (2.32:1 → 2 failures). 89 tests.
-  - Lighthouse after M4b (live, mobile, Editorial, 3 runs: 91, 93, 91): **Performance 91, Accessibility 96**
-    — still above the bar (was 92 / 96; the difference is run-to-run noise).
+- M4b built (spec 007): **three complete designs** at the same URLs.
+  - **Editorial** — the approved one, default for everyone.
+  - **Luminos** (Apple-inspired) — thin nav; home = stack of full-width tiles (intro on black, newest
+    article with a huge image, 2-column article tiles, services, solutions, building photo edge to edge,
+    ISO, portfolio, big phone number); article = sticky bar with one action + centred giant title +
+    edge-to-edge photo; funding list = newsroom card grid; tiny grey footer.
+  - **Nocturn** (Linear-inspired) — dark, **no top header**: a left app sidebar (phones: top bar + Meniu);
+    home = headline + "product window" listing articles like issues (FN-12…), portfolio name strip,
+    ruled service columns, title-left/text-right sections; funding list = changelog timeline; article =
+    body + sticky properties panel (category, date, action, contact).
+  - Switch: three tiny words "Editorial Luminos Nocturn" top right on each design's home page. They are
+    links to `/?stil=…`; `proxy.ts` stores the choice in a cookie and serves the same URL from the
+    chosen design's pages (`app/luminos/…`, `app/nocturn/…`, not indexed). Unknown URLs get the Editorial 404.
+  - Code: Editorial moved into `app/(editorial)/` (URLs unchanged); designs in `components/luminos/`,
+    `components/nocturn/`; shared routing `lib/design-routes.tsx`; choice logic `lib/design.ts`; page
+    registry `components/pages/index.ts`. Article bodies and service/contact/legal/calculator pages are
+    shared and restyled by the `[data-stil]` tokens in `app/globals.css`.
+  - Checks: 70 built pages, 4711 internal links, 0 broken; 94 tests (`tests/styles.test.mjs`: proxy
+    rules — proven red by breaking the rewrite — every page per design, switcher placement, AA contrast).
+    Editorial pixel-identical to the live site on article, list, service page (375 + 1280 px) and
+    calculator (375); the home differs only by the switcher row (~4 px).
 
 ## Demo script (7 Oct) — 5 steps
 1. **Laptop, home `/`.** The new look: clean intro, the 3 newest funding articles (they update by
@@ -104,8 +111,8 @@ decide the open questions above.
 ## Blocked on the human
 - **PO LOOK-CHECK (M4 + M4b).** Takes ~10 minutes.
   1. On your **laptop**, open https://dezvoltaredigitala-next.vercel.app/ . In the small words at the
-     top right, click **Luminos**, then open the newest article and the calculator. Go back to the home page, click
-     **Nocturn**, and look at the same two pages.
+     top right, click **Luminos**; open the newest article, the funding list and the calculator. Go back
+     to the home page (logo), click **Nocturn** (top right), and look at the same pages.
   2. On your **phone**, do the same, then walk through the 5 demo steps above (step 5: tap the number,
      then hang up).
   3. Read the "Open questions to raise at the demo" list; note anything you want changed first.
@@ -113,8 +120,9 @@ decide the open questions above.
   or name what to change.
 
 ## Decisions made since last review
-- PO: two more styles, inspired by Apple and Linear (rejected the first proposal "Instituțional/Tehnic");
-  switcher on the home page only (2026-10-06). Nocturn is dark by the PO's choice.
+- PO: two more designs, inspired by Apple and Linear (rejected "Instituțional/Tehnic", then rejected the
+  colour-only version: wants a different structure — spec 007); switcher tiny, top right, home page only
+  (2026-10-06). Nocturn is dark by the PO's choice.
 - PO: fix diacritics and obvious typos in old texts, each non-diacritic fix listed (2026-10-06).
 - PO: header button "Eligibilitate preliminară" → `/contact/` for the demo (2026-10-06). On the old site it
   opens a pop-up application form (company, CUI, funding programme, balance sheet + Certificat

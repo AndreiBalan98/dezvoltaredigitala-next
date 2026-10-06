@@ -3,16 +3,16 @@ import Link from "next/link";
 import styles from "./SiteFooter.module.css";
 
 // Facts taken from the live site footer and home page (content/site/footer.html, content/pages/sample-page.json).
-const PHONE_DISPLAY = "+40 749 589 848";
-const PHONE_HREF = "tel:+40749589848";
-const EMAIL = "contact@dezvoltaredigitala.ro";
+export const PHONE_DISPLAY = "+40 749 589 848";
+export const PHONE_HREF = "tel:+40749589848";
+export const EMAIL = "contact@dezvoltaredigitala.ro";
 
-const CERTIFICATES = [
+export const CERTIFICATES = [
   { label: "ISO/IEC 27001 – securitatea informației", href: "/media/2025/02/Screenshot-2025-03-27-144026.jpg" },
   { label: "ISO/IEC 20000-1 – managementul serviciilor IT", href: "/media/2025/03/Screenshot-2025-03-27-144118.jpg" },
 ];
 
-const PORTFOLIO = [
+export const PORTFOLIO = [
   { name: "jocurinoi.ro", kind: "Magazin online", href: "https://www.jocurinoi.ro/" },
   { name: "antiv.ro", kind: "Magazin online", href: "https://www.antiv.ro/" },
   { name: "xat.ro", kind: "Găzduire web", href: "https://www.xat.ro/" },

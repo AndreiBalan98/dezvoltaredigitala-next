@@ -74,12 +74,14 @@ article (spec 003; PO: "b is way better"). Sober, print-like: rules instead of b
 - **Forbidden:** gradients, glassmorphism, drop shadows on cards, emoji in UI, fade/slide-in
   animations, a hero photo of a person pointing, grids of six icons-in-circles, phrases like
   "soluții inovatoare" / "potențial nelimitat", dark mode for the demo.
-- **Two candidate styles under review (spec 006, PO 6 Oct 2026: "take inspiration from Apple and
-  Linear websites"):** "Luminos" (Apple-inspired: white/light grey, Inter, rounded tiles, pill buttons,
-  blue `#0066cc`) and "Nocturn" (Linear-inspired: near-black `#08090a`, Inter, hairline-bordered cards,
-  indigo `#8b94ff` links, light buttons). Switchable from the home page; Editorial stays the default.
-  Nocturn is a dark *style* the PO asked for — the "no dark mode" rule above means no automatic dark mode.
-  Rounded corners are allowed in these two. After the demo the PO keeps one and the others are removed.
+- **Two candidate designs under review (spec 007, PO 6 Oct 2026: "two completely different designs …
+  take inspiration from Apple and Linear"):** "Luminos" (Apple-inspired: thin nav, full-width image
+  tiles, centred giant headlines, pill buttons, edge-to-edge article images, newsroom card grid) and
+  "Nocturn" (Linear-inspired: dark, left app sidebar instead of a header, issue-list "product window",
+  changelog timeline, article properties panel). Same URLs; a cookie picks the design (`proxy.ts`).
+  Switched with three tiny words top right on the home page; Editorial stays the default. Nocturn is a
+  dark design the PO asked for — "no dark mode" above means no automatic dark mode. Rounded corners are
+  allowed in these two. After the demo the PO keeps one and the others are removed.
 - Romanian diacritics with comma-below (ș ț), Romanian number format (25.000 lei, 12,5 kWh).
 - Works at 375px wide. Every interactive element reachable by keyboard.
 
