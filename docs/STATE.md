@@ -3,8 +3,8 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M1 — Setup (status: review — waiting for the Vercel HUMAN TASK)
-**Current spec:** docs/specs/002-setup.md (M0 spec 001 is done)
+**Current milestone:** M2 — Style direction + reference pages (status: todo)
+**Current spec:** — (next: docs/specs/003-…; 001 and 002 are done)
 **Branch:** main
 
 ## Where we are
@@ -12,31 +12,22 @@
   the live WordPress site into `content/` and `public/media/`. Counts match the API.
 - M1 built: Next.js 16.3.8 site with header, footer, design tokens and a placeholder page for every
   one of the 23 old URLs (unknown URLs show the 404 page). DoD green locally.
-- Pushed to GitHub `main` (public repo, PO decision 2026-10-06).
+- Live at **https://dezvoltaredigitala-next.vercel.app** — all 23 old URLs return 200, unknown URLs 404,
+  `/contact` → 308 → `/contact/`. Vercel deploys every push to `main`. Repo is public (PO decision).
 
 ## Next step
-1. PO does HUMAN TASK 2 (find the real Vercel address). Claude checks it, marks M1 done.
-2. M2 under the new direction (PRODUCT.md / ROADMAP.md, commit a2a3f3c): write spec 003 → PO approves
-   → two style directions on the energy-storage article → PO picks → build article + calculator.
+M2 under the new direction (PRODUCT.md / ROADMAP.md): write spec 003 → PO approves → two style
+directions on `/finantare-sisteme-stocare-energie/` → PO picks → build that article + calculator.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
 - Page-builder HTML is stored raw; cleaning it is M3's job.
 
 ## In progress / committed but unfinished
-- M1 is committed but not verified on Vercel yet.
+- nothing
 
 ## Blocked on the human
-- **HUMAN TASK 1 — Import on Vercel:** done by PO 2026-10-06. Deploys succeed (GitHub shows
-  "Deployment has completed" for 9338ea4), but `https://dezvoltaredigitala-next.vercel.app` answers
-  Vercel's own `NOT_FOUND` — that name is not attached to the project. The per-deployment URLs
-  (`…-new-world-orders-projects.vercel.app`) exist but sit behind Vercel login.
-- **HUMAN TASK 2 — Find the real public address:**
-  1. Open https://vercel.com/new-world-orders-projects/dezvoltaredigitala-next
-  2. In the **Production Deployment** box, find **Domains**. Copy every address listed there.
-  3. Also note the word next to **Status** (should be **Ready**).
-  - **Done looks like:** you paste the address(es) + the status word to Claude.
-  - **What Claude does with it:** opens the address; if it still fails, gives the one setting to change.
+- nothing
 
 ## Decisions made since last review
 - Repo stays public (PO decision); PRODUCT.md updated.
@@ -54,6 +45,8 @@
 - Tests use Node's built-in runner (no test library added).
 
 ## Tried and rejected — don't retry
+- Importing on Vercel before the code was pushed: Vercel saved framework "Other" and served only
+  `public/` (every page 404, images 200). Fixed by `vercel.json` `"framework": "nextjs"` — keep that file.
 - Paginating the WP API by "stop when a page is short" — a missing item crashed with HTTP 400 instead
   of a clear count error. Now uses the `X-WP-TotalPages` header.
 

@@ -17,13 +17,13 @@ PO chose this knowing it leaves fewer approval rounds; most-visited pages go fir
 - [x] `content/inventory.md`-style summary is printed to the terminal (slug, title, date, type) — not a new doc
 - [x] if content is missing or broken: stop and tell the PO before M1
 
-## M1 — Setup · status: review · ~45 min
+## M1 — Setup · status: done · ~45 min
 **Outcome:** empty Next.js site with header, footer and design tokens, live on Vercel.
 **Definition of Done:**
 - [x] `.gitignore` committed before `npm install`
 - [x] `.claude/dod-commands`: `npm run lint`, `npm run build`, `npm run check:routes`
       (every exported slug has a page) and `npm test` — each proven able to fail once
-- [ ] **HUMAN TASK:** PO imports the GitHub repo on vercel.com (3 clicks, written in STATE.md); preview URL works
+- [x] **HUMAN TASK:** PO imports the GitHub repo on vercel.com (3 clicks, written in STATE.md); preview URL works
 **Out of scope:** any page content.
 
 ## M2 — Style direction + the reference pages · status: todo · ~2 h

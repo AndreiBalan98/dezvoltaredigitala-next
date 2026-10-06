@@ -1,6 +1,6 @@
 # Spec 002 — Setup: empty Next.js site, header, footer, tokens
 
-**Milestone:** M1 · **Status:** review (approved by PO: "plan approved, run M0 and M1", 2026-10-06) · **Date:** 2026-10-06
+**Milestone:** M1 · **Status:** done (approved by PO: "plan approved, run M0 and M1", 2026-10-06) · **Date:** 2026-10-06
 
 ## Goal
 An empty but real Next.js site: shared header and footer, the design tokens from PRODUCT.md, and a
