@@ -1,6 +1,6 @@
 # Spec 006 — Three styles with a switcher
 
-**Milestone:** M4b (inserted before the demo) · **Status:** approved (PO, 2026-10-06, with changes: Apple/Linear directions, switcher on home only) · **Date:** 2026-10-06
+**Milestone:** M4b (inserted before the demo) · **Status:** superseded by spec 007 (PO: "just copies of the first one with different styles"); was approved (PO, 2026-10-06, with changes: Apple/Linear directions, switcher on home only) · **Date:** 2026-10-06
 
 ## Goal
 The PO can show the whole site in three clearly different looks and switch between them with one
