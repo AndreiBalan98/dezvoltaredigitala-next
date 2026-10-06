@@ -3,8 +3,8 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M3 — All pages (status: spec — waiting for PO approval of spec 004)
-**Current spec:** docs/specs/004-all-pages.md (draft); M2 spec 003 done
+**Current milestone:** M3 — All pages (status: building)
+**Current spec:** docs/specs/004-all-pages.md (approved 2026-10-06)
 **Branch:** main
 
 ## Where we are
@@ -36,7 +36,7 @@ PO approves spec 004 (M3: every remaining page, older articles cleaned, cuts lis
 - nothing
 
 ## Blocked on the human
-- **PO: approve spec 004** and decide whether to fix diacritics/typos in the old texts.
+- nothing
 
 ## Decisions made since last review
 - PO picked direction B "Editorial" (2026-10-06). Fonts Source Serif 4 + Source Sans 3 via `next/font`

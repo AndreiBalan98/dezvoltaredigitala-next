@@ -38,7 +38,7 @@ reusable components, with a new header and footer.
 - [x] both pages pass at 375px and 1280px (screenshots in the PR/commit evidence)
 - [x] **PO LOOK-CHECK** on the Vercel URL: approve the look, or say what to change. Nothing else starts before this. (PO: "top, keep going like this", 2026-10-06)
 
-## M3 — All pages · status: spec · ~2 h
+## M3 — All pages · status: building · ~2 h
 **Outcome:** every URL in PRODUCT.md's MVP list renders with the approved look; structure may change
 (e.g. merged service pages), old URLs redirect where a page moved.
 **Definition of Done:**
