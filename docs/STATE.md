@@ -3,8 +3,8 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M3 — All pages (status: review — waiting for the PO look-check)
-**Current spec:** docs/specs/004-all-pages.md (approved 2026-10-06)
+**Current milestone:** M4 — Demo ready (status: spec — waiting for PO approval)
+**Current spec:** docs/specs/005-demo-ready.md (draft)
 **Branch:** main
 
 ## Where we are
@@ -12,7 +12,7 @@
   the live WordPress site into `content/` and `public/media/`. Counts match the API.
 - M1 done: Next.js 16.3.8 site, a page for every one of the 23 old URLs (unknown URLs → 404).
 - M2 done (PO look-check 2026-10-06): style **"Editorial"**; reference article + battery calculator.
-- M3 built: **every old URL is a real page** in the Editorial style — home, funding list, 12 articles,
+- M3 done (PO look-check 2026-10-06: "go on, its ok"): **every old URL is a real page** in the Editorial style — home, funding list, 12 articles,
   `/servicii/` + 4 service pages, contact, 2 legal pages, 404. Live at
   **https://dezvoltaredigitala-next.vercel.app** (Vercel deploys every push to `main`; repo is public).
   - Articles: `components/articles/*.tsx`, registry `components/articles/index.ts` (URL → body, summary,
@@ -36,8 +36,8 @@ Full list with reasons: `tests/text-changes.mjs` (text) and `REMOVED_IMAGES` in 
 - **Titles:** "Economia circulară", "Start-Up Nation 2025". Non-funding posts are labelled "Noutăți".
 
 ## Next step
-PO look-check of M3 (below). After a yes: M4 — Lighthouse (Performance ≥ 90, Accessibility ≥ 95 on the
-article page), link check, final phone/laptop check, 5-step demo script.
+PO approves spec 005 (M4): link check as a DoD command, Lighthouse via PageSpeed Insights on the
+article page (Performance ≥ 90, Accessibility ≥ 95), 5-step demo script, final phone/laptop look-check.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
@@ -52,12 +52,7 @@ article page), link check, final phone/laptop check, 5-step demo script.
 - nothing
 
 ## Blocked on the human
-- **PO LOOK-CHECK (M3).** On your phone and laptop open https://dezvoltaredigitala-next.vercel.app/ and look at:
-  1. the home page, top to bottom;
-  2. "Finanțări nerambursabile" in the menu — all 12 articles, newest first; open two older ones;
-  3. "Servicii" → "Creare website" (prices €400 / €800 / €1200);
-  4. "Contact".
-  Done looks like: you answer "approved", or say what to change. M4 does not start before this.
+- **Approve spec 005** (`docs/specs/005-demo-ready.md`) and the PageSpeed Insights question in it.
 
 ## Decisions made since last review
 - PO: fix diacritics and obvious typos in old texts, each non-diacritic fix listed (2026-10-06).

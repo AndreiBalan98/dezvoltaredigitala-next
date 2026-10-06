@@ -1,6 +1,6 @@
 # Spec 004 — All pages in the Editorial style
 
-**Milestone:** M3 · **Status:** approved (PO, 2026-10-06; diacritics and typo fixes allowed) · **Date:** 2026-10-06
+**Milestone:** M3 · **Status:** done (PO look-check passed 2026-10-06; diacritics and typo fixes allowed) · **Date:** 2026-10-06
 
 ## Goal
 Every one of the 23 old URLs shows a real page in the approved Editorial look — no placeholders left.

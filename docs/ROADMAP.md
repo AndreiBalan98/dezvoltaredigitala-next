@@ -38,17 +38,17 @@ reusable components, with a new header and footer.
 - [x] both pages pass at 375px and 1280px (screenshots in the PR/commit evidence)
 - [x] **PO LOOK-CHECK** on the Vercel URL: approve the look, or say what to change. Nothing else starts before this. (PO: "top, keep going like this", 2026-10-06)
 
-## M3 — All pages · status: review · ~2 h
+## M3 — All pages · status: done · ~2 h
 **Outcome:** every URL in PRODUCT.md's MVP list renders with the approved look; structure may change
 (e.g. merged service pages), old URLs redirect where a page moved.
 **Definition of Done:**
-- [ ] older articles: page-builder HTML cleaned into the article template (text and facts kept, emoji
+- [x] older articles: page-builder HTML cleaned into the article template (text and facts kept, emoji
       and builder leftovers removed); the list of cuts goes into STATE.md for the PO
-- [ ] home, `/finantari-nerambursabile/`, 4 service pages, contact, legal pages, 404
-- [ ] `npm run check:routes` green: every old URL is built or has a redirect
-- [ ] **PO LOOK-CHECK** on the Vercel URL (home, a service page, the funding list at minimum)
+- [x] home, `/finantari-nerambursabile/`, 4 service pages, contact, legal pages, 404
+- [x] `npm run check:routes` green: every old URL is built or has a redirect
+- [x] **PO LOOK-CHECK** on the Vercel URL (home, a service page, the funding list at minimum) (PO: "go on, its ok", 2026-10-06)
 
-## M4 — Demo ready · status: todo · ~45 min
+## M4 — Demo ready · status: spec · ~45 min
 **Outcome:** the PO can present from his phone and laptop without surprises.
 **Definition of Done:**
 - [ ] Lighthouse mobile on the article page: Performance ≥ 90, Accessibility ≥ 95 (numbers in STATE.md)
