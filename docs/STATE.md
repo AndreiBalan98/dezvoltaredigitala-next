@@ -15,8 +15,9 @@
 - Pushed to GitHub `main` (public repo, PO decision 2026-10-06).
 
 ## Next step
-1. PO does HUMAN TASK 1 (Vercel import) and pastes the URL.
-2. Claude checks the URL, marks M1 done, then starts M2 (spec 003: article template + calculator).
+1. PO does HUMAN TASK 2 (find the real Vercel address). Claude checks it, marks M1 done.
+2. M2 under the new direction (PRODUCT.md / ROADMAP.md, commit a2a3f3c): write spec 003 → PO approves
+   → two style directions on the energy-storage article → PO picks → build article + calculator.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
@@ -26,22 +27,21 @@
 - M1 is committed but not verified on Vercel yet.
 
 ## Blocked on the human
-- **HUMAN TASK 1 — Import the repo on Vercel:**
-  1. Open https://vercel.com/new in the browser. If asked, click **Continue with GitHub** and log in.
-  2. Under **Import Git Repository**, find `dezvoltaredigitala-next`.
-     If it is not in the list: click **Adjust GitHub App Permissions →**, choose
-     **Only select repositories**, add `dezvoltaredigitala-next`, click **Save**, go back to the Vercel tab.
-  3. Click **Import** next to `dezvoltaredigitala-next`.
-  4. Leave everything as it is (Framework Preset shows **Next.js**; no environment variables). Click **Deploy**.
-  5. Wait 1–2 minutes until you see "Congratulations". Click **Continue to Dashboard**.
-  6. Under **Domains**, copy the address ending in `.vercel.app`.
-  - **Done looks like:** that address shows the blue "Dezvoltare digitală" logo, the menu, and the
-    footer; adding `/contact/` at the end shows a page titled "Contact".
-  - **What Claude does with it:** opens `/`, `/contact/`, `/servicii/creare-website/` and a wrong URL
-    (must be 404), writes the URL here, and marks M1 done.
+- **HUMAN TASK 1 — Import on Vercel:** done by PO 2026-10-06. Deploys succeed (GitHub shows
+  "Deployment has completed" for 9338ea4), but `https://dezvoltaredigitala-next.vercel.app` answers
+  Vercel's own `NOT_FOUND` — that name is not attached to the project. The per-deployment URLs
+  (`…-new-world-orders-projects.vercel.app`) exist but sit behind Vercel login.
+- **HUMAN TASK 2 — Find the real public address:**
+  1. Open https://vercel.com/new-world-orders-projects/dezvoltaredigitala-next
+  2. In the **Production Deployment** box, find **Domains**. Copy every address listed there.
+  3. Also note the word next to **Status** (should be **Ready**).
+  - **Done looks like:** you paste the address(es) + the status word to Claude.
+  - **What Claude does with it:** opens the address; if it still fails, gives the one setting to change.
 
 ## Decisions made since last review
 - Repo stays public (PO decision); PRODUCT.md updated.
+- PO direction 2026-10-06: full remake, structure may change, old URLs keep working (open or 308),
+  PO picks between two style directions at M2, look-check every milestone, aim: all pages by 7 Oct.
 - 12 posts exist, not 10: `/test-2/` and `/bizz-club-botosani/` are also published. All keep their URLs.
 - Home page and footer are WordPress theme parts (not in the API); the exporter takes them from the live HTML.
 - `/servicii/` has no text of its own on the old site (only a title).
