@@ -57,6 +57,10 @@ colour-only version the PO rejected: "just copies of the first one with differen
     rules — proven red by breaking the rewrite — every page per design, switcher placement, AA contrast).
     Editorial pixel-identical to the live site on article, list, service page (375 + 1280 px) and
     calculator (375); the home differs only by the switcher row (~4 px).
+  - Lighthouse after M4b (live, mobile, Editorial article, 3 runs: 97, 93, 96): **Performance 96,
+    Accessibility 96** — the proxy did not slow it down (was 92 / 96).
+  - Live checks: `?stil=` sets the cookie (307 → clean URL); the same URL serves the chosen design, also
+    for in-app navigation (RSC requests); images and unknown URLs (404) unaffected.
 
 ## Demo script (7 Oct) — 5 steps
 1. **Laptop, home `/`.** The new look: clean intro, the 3 newest funding articles (they update by

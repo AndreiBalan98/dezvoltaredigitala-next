@@ -116,6 +116,11 @@ End-to-end: the screenshots above, sent to the PO with the live URL.
 ## Assumptions made
 - Names stay "Luminos" and "Nocturn"; Editorial stays the default.
 - Article bodies keep their structure inside each design (rewriting 12 bodies × 2 is out of scope).
+- Unknown URLs show the Editorial 404 in every design (Next renders the 404 outside the design
+  layouts); a per-design 404 was last in the priority order and was not built. Valid URLs are unaffected.
+- Small deviations from the sketches after looking at screenshots: the Luminos nav keeps an
+  "Eligibilitate preliminară" text link (PO decision on that link); Luminos services are one grey section
+  of white cards; Nocturn's ANPC/SOL links sit in the footer under the content (on every page).
 
 ## Risks
 - Biggest build so far (~2 page sets). If something must give, the order is: home → article →
