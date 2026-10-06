@@ -10,7 +10,7 @@
 | Budget ceiling / month | 0 for the demo. Vercel Hobby is free but meant for non-commercial use — production hosting is an OPEN QUESTION |
 | Deadline | **Demo: Wednesday 7 Oct 2026** |
 | Who else touches this code | nobody |
-| **Repository visibility** | private |
+| **Repository visibility** | public (PO decision, 6 Oct 2026) |
 
 ## Riskiest assumption
 *"We can get all of the old site's content out cleanly."* **Mostly settled on 6 Oct:** the WordPress

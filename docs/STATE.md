@@ -12,12 +12,11 @@
   the live WordPress site into `content/` and `public/media/`. Counts match the API.
 - M1 built: Next.js 16.3.8 site with header, footer, design tokens and a placeholder page for every
   one of the 23 old URLs (unknown URLs show the 404 page). DoD green locally.
-- **Nothing is pushed yet** — the commits are only on this computer (see "Blocked on the human").
+- Pushed to GitHub `main` (public repo, PO decision 2026-10-06).
 
 ## Next step
-1. PO answers the repo-visibility question → Claude pushes `main` to GitHub.
-2. PO does HUMAN TASK 1 (Vercel import) and pastes the URL.
-3. Claude checks the URL, marks M1 done, then starts M2 (spec 003: article template + calculator).
+1. PO does HUMAN TASK 1 (Vercel import) and pastes the URL.
+2. Claude checks the URL, marks M1 done, then starts M2 (spec 003: article template + calculator).
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
@@ -27,10 +26,7 @@
 - M1 is committed but not verified on Vercel yet.
 
 ## Blocked on the human
-- **DECISION: repo visibility.** GitHub shows `AndreiBalan98/dezvoltaredigitala-next` as **PUBLIC**;
-  PRODUCT.md says private. The repo now contains the exported site content. Claude will not push
-  until this is answered. Recommendation: make it private (`gh repo edit AndreiBalan98/dezvoltaredigitala-next --visibility private --accept-visibility-change-consequences`).
-- **HUMAN TASK 1 — Import the repo on Vercel** (after Claude has pushed):
+- **HUMAN TASK 1 — Import the repo on Vercel:**
   1. Open https://vercel.com/new in the browser. If asked, click **Continue with GitHub** and log in.
   2. Under **Import Git Repository**, find `dezvoltaredigitala-next`.
      If it is not in the list: click **Adjust GitHub App Permissions →**, choose
@@ -45,6 +41,7 @@
     (must be 404), writes the URL here, and marks M1 done.
 
 ## Decisions made since last review
+- Repo stays public (PO decision); PRODUCT.md updated.
 - 12 posts exist, not 10: `/test-2/` and `/bizz-club-botosani/` are also published. All keep their URLs.
 - Home page and footer are WordPress theme parts (not in the API); the exporter takes them from the live HTML.
 - `/servicii/` has no text of its own on the old site (only a title).

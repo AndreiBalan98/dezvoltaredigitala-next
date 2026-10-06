@@ -67,4 +67,4 @@ End-to-end check: the Vercel preview URL serves `/` and `/contact/` with header 
 - Vercel Hobby is for non-commercial use — fine for the demo, open question for production.
 
 ## Needs a decision from the Product Owner
-- [ ] Repo visibility: GitHub says PUBLIC, PRODUCT.md says private (asked at hand-back).
+- [x] Repo visibility: public (PO decided 2026-10-06; PRODUCT.md updated).
