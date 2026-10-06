@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HelpBox } from "@/components/article/blocks";
-import StyleSwitcher from "@/components/StyleSwitcher";
 import PostList from "./PostList";
 import { SERVICES } from "./ServicesIndex";
 import styles from "./pages.module.css";
@@ -53,7 +52,6 @@ const PORTFOLIO = [
 export default function Home() {
   return (
     <div className={styles.home}>
-      <StyleSwitcher />
       <section className={styles.narrow}>
         <h1 className={styles.heroTitle}>Transformă-ți afacerea cu soluții digitale</h1>
         <p className={styles.heroLead}>

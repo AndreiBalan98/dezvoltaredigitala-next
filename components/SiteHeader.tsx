@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import MenuToggle from "./MenuToggle";
+import StyleSwitcher from "./StyleSwitcher";
 import styles from "./SiteHeader.module.css";
 
 const NAV = [
@@ -13,6 +14,7 @@ const NAV = [
 export default function SiteHeader() {
   return (
     <header className={styles.header}>
+      <StyleSwitcher />
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label="Dezvoltare digitală – acasă">
           <Image src="/media/2025/02/logo-1.png" alt="" width={335} height={129} priority />

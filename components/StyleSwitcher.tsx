@@ -1,10 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import styles from "./StyleSwitcher.module.css";
 
-// Demo tool (spec 006): three candidate styles for the PO to compare. The choice is stored in the
-// browser and applied to every page by the script in app/layout.tsx. Removed once a style is picked.
+// Demo tool (spec 006): three candidate styles for the PO to compare — a tiny row at the top right of
+// the header, on the home page only. The choice is stored in the browser and applied to every page by
+// the script in app/layout.tsx. Removed once a style is picked.
 const STYLES = [
   { id: "editorial", label: "Editorial" },
   { id: "luminos", label: "Luminos" },
@@ -21,6 +23,8 @@ const current = () => document.documentElement.getAttribute("data-stil") ?? "edi
 
 export default function StyleSwitcher() {
   const active = useSyncExternalStore(subscribe, current, () => "editorial");
+  const pathname = usePathname();
+  if (pathname !== "/") return null;
 
   function choose(id: string) {
     document.documentElement.setAttribute("data-stil", id);
@@ -32,8 +36,7 @@ export default function StyleSwitcher() {
   }
 
   return (
-    <div className={styles.switcher} role="group" aria-label="Stilul site-ului">
-      <span className={styles.label}>Stil</span>
+    <div className={`container ${styles.switcher}`} role="group" aria-label="Stilul site-ului">
       {STYLES.map((s) => (
         <button
           key={s.id}

@@ -35,8 +35,8 @@ M4 — Demo ready (built; its final look-check is folded into the same check)
   The only accessibility finding on every page: links inside paragraphs differ from text by colour
   only (no underline). Not fixed — above the bar; easy follow-up after the demo.
 
-- M4b built (spec 006): **three styles**, switched with the "Stil: Editorial · Luminos · Nocturn"
-  buttons at the top of the home page; the choice is remembered on every page (browser storage).
+- M4b built (spec 006): **three styles**, switched with three tiny words "Editorial Luminos Nocturn"
+  at the top right of the header, home page only (PO: "small, almost unnoticeable"); the choice is remembered on every page (browser storage).
   - **Editorial** — the approved one, still the default; pixel-identical to before (0 differing pixels
     vs the live site, 4 pages × 375/1280 px).
   - **Luminos** — Apple-inspired: white/light grey, Inter font, rounded grey tiles, blue pill buttons,
@@ -103,8 +103,8 @@ decide the open questions above.
 
 ## Blocked on the human
 - **PO LOOK-CHECK (M4 + M4b).** Takes ~10 minutes.
-  1. On your **laptop**, open https://dezvoltaredigitala-next.vercel.app/ . At the top of the page
-     click **Luminos**, then open the newest article and the calculator. Go back to the home page, click
+  1. On your **laptop**, open https://dezvoltaredigitala-next.vercel.app/ . In the small words at the
+     top right, click **Luminos**, then open the newest article and the calculator. Go back to the home page, click
      **Nocturn**, and look at the same two pages.
   2. On your **phone**, do the same, then walk through the 5 demo steps above (step 5: tap the number,
      then hang up).

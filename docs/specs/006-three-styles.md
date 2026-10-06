@@ -52,8 +52,9 @@ styles"*. Inspiration only — no Apple/Linear logos, names, icons or copied tex
   `:global([data-stil="…"])`. No component markup changes beyond what a style hook strictly needs.
 - Fonts for C and D are loaded with `preload: false`: the browser downloads them only when that style
   is active, so Editorial's Lighthouse scores stay as measured.
-- **Switcher (PO: home page only):** a small row at the top of the home page — `Stil: Editorial ·
-  Luminos · Nocturn` — three real buttons, the active one marked (`aria-pressed`), keyboard-operable,
+- **Switcher (PO: home page only; then "somewhere on the top right and small, almost unnoticeable"):**
+  a tiny 11px plain-text row at the top right of the header, home page only — `Editorial Luminos
+  Nocturn` — three real buttons, the active one marked (`aria-pressed`), keyboard-operable,
   styled by the active style. The chosen style stays on every page (stored in the browser).
   It is a demo tool: removed when the PO picks a style.
 
@@ -62,7 +63,7 @@ styles"*. Inspiration only — no Apple/Linear logos, names, icons or copied tex
 |---|---|---|
 | `components/StyleSwitcher.tsx` + `.module.css` | new | the three-button row on the home page (client component) |
 | `app/layout.tsx` | changed | Inter font variable (not preloaded), head script |
-| `components/pages/Home.tsx` | changed | renders the switcher at the top |
+| `components/SiteHeader.tsx` | changed | renders the switcher (it shows itself only on `/`) |
 | `app/globals.css` | changed | token overrides for C and D |
 | `components/**/*.module.css` | changed | per-style block rules appended at the end of each file |
 | `tests/styles.test.mjs` | new | built pages contain the switcher and the head script; every style's colour pairs pass AA contrast |
