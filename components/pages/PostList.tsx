@@ -6,8 +6,11 @@ import styles from "./pages.module.css";
 
 const dateFormat = new Intl.DateTimeFormat("ro-RO", { day: "numeric", month: "long", year: "numeric" });
 
-/** Posts newest first (all, or the newest `limit`), each with image, date, title and summary. */
-export default function PostList({ limit }: { limit?: number }) {
+/**
+ * Posts newest first (all, or the newest `limit`), each with image, date, title and summary.
+ * `heading` keeps the heading order right: h2 directly under the page title, h3 under a section heading.
+ */
+export default function PostList({ limit, heading: Heading }: { limit?: number; heading: "h2" | "h3" }) {
   const list = posts().slice(0, limit);
   return (
     <ul className={styles.posts}>
@@ -25,9 +28,9 @@ export default function PostList({ limit }: { limit?: number }) {
                 {article?.label ?? "Finanțări nerambursabile"} ·{" "}
                 <time dateTime={post.date}>{dateFormat.format(new Date(post.date))}</time>
               </p>
-              <h3 className={styles.postTitle}>
+              <Heading className={styles.postTitle}>
                 <Link href={post.path}>{article?.title ?? post.title}</Link>
-              </h3>
+              </Heading>
               {article && <p className={styles.postSummary}>{article.summary}</p>}
             </div>
           </li>

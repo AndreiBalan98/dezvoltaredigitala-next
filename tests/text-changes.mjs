@@ -46,3 +46,43 @@ export const TEXT_CHANGES = [
   { page: "/", old: "martie 3, 2025", new: null, why: "two fixed article cards replaced by the 3 newest articles (generated)" },
   { page: "/", old: "C&A Connect te invită să fii parte din proiectul EduWebLab, un program dedicat susținerii tinerelor talente din domeniul IT și dezvoltării digitale a mediului de afaceri. În colaborare cu Universitatea „Ștefan cel Mare” din Suceava, oferim oportunitatea antreprenorilor de a", new: null, why: "two fixed article cards replaced by the 3 newest articles (generated)" },
 ];
+
+// Every image the old pages showed that the new pages no longer show (spec 004). tests/leftovers.test.mjs
+// checks each one is really gone from its page. Event photos, the building photo, portfolio screenshots,
+// certificates and article images are kept.
+const STOCK_PEOPLE = "stock photo of people (PRODUCT.md: no stock photos of people)";
+const ICON_GRID = "decorative icon of the six-icon grid (PRODUCT.md Forbidden list); the six areas are now a list";
+const SERVICE_ICONS = [
+  "web.svg",
+  "analiza-teh-1.svg",
+  "optimation-seo-speed-svgrepo-com.svg",
+  "analytics-chart-earning-svgrepo-com.svg",
+  "search-seo-word-svgrepo-com.svg",
+  "data-protection-save-svgrepo-com.svg",
+];
+const servicePage = (page, photos) => [
+  ...photos.map((file) => ({ page, file, why: STOCK_PEOPLE })),
+  ...SERVICE_ICONS.map((file) => ({ page, file, why: ICON_GRID })),
+];
+
+export const REMOVED_IMAGES = [
+  { page: "/", file: "young-business-woman-pointing-office-Photoroom.png", why: "person pointing (PRODUCT.md Forbidden list)" },
+  ...["analiza-teh.svg", "crm.svg", "gest.svg"].map((file) => ({ page: "/", file, why: "decorative icon" })),
+  ...["antiv-logo-1.png", "eduweblab-logo-1024x154.png", "xat-logo.png", "b2b-logo.webp", "jocurinoi-logo.webp", "buygames-logo.webp", "caconnect-logo-1.png"].map(
+    (file) => ({ page: "/", file, why: "logo strip under the portfolio (repeated the portfolio)" }),
+  ),
+  ...servicePage("/servicii/creare-website/", [
+    "young-male-designer-using-graphics-tablet-while-working-with-com-scaled.jpg",
+    "coding-man-scaled.jpg",
+  ]),
+  ...servicePage("/servicii/consultanta-solutii-it-si-studii-de-fezabilitate/", [
+    "hands-working-with-laptop-scaled.jpg",
+    "group-young-business-people-working-office-scaled.jpg",
+  ]),
+  ...servicePage("/servicii/digitalizare-si-automatizare/", [
+    "computer-engineer-typing-keyboard-writing-code-build-firewalls-scaled.jpg",
+    "handsome-businessman-doing-job-digital-tablet-reading-something-standing-white-background.jpg",
+    "business-scene-top-view-scaled.jpg",
+  ]),
+  ...servicePage("/servicii/consultanta-pentru-accesarea-fondurilor-nerambursabile/", ["about-us-bg.png"]),
+];

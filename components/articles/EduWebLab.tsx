@@ -2,7 +2,7 @@
 import { HelpBox, Lead, Prose } from "@/components/article/blocks";
 
 export const summary =
-  "C&A Connect te invită să fii parte din proiectul EduWebLab, un program dedicat susținerii tinerelor talente din domeniul IT.";
+  "C&A Connect te invită să fii parte din proiectul EduWebLab, un program dedicat susținerii tinerelor talente din domeniul IT și dezvoltării digitale a mediului de afaceri.";
 
 export default function EduWebLab() {
   return (

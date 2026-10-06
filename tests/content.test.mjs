@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { allEntries, toPath, toSegments } from "../lib/content.ts";
+import { allEntries, posts, toPath, toSegments } from "../lib/content.ts";
 
 test("every old URL from PRODUCT.md is in the export", () => {
   const paths = allEntries().map((e) => e.path);
@@ -36,4 +36,11 @@ test("path <-> segments round-trip", () => {
   assert.deepEqual(toSegments("/"), []);
   assert.equal(toPath(["servicii", "creare-website"]), "/servicii/creare-website/");
   assert.equal(toPath([]), "/");
+});
+
+test("funding list: 12 posts, newest first", () => {
+  const list = posts();
+  assert.equal(list.length, 12);
+  assert.equal(list[0].path, "/finantare-sisteme-stocare-energie/");
+  for (let i = 1; i < list.length; i++) assert.ok(list[i - 1].date >= list[i].date, `${list[i].path} is out of order`);
 });

@@ -20,12 +20,11 @@ export default function ConsultantaFonduri() {
         />
       </Section>
 
-      <Section title="Avantajele consultanței profesionale">
+      <Section title="Iată principalele avantaje ale apelării la consultanță profesională:">
         <Lead>
           Accesarea fondurilor nerambursabile poate fi un proces complex, iar o echipă de consultanță specializată îți
           poate crește semnificativ șansele de succes
         </Lead>
-        <p>Iată principalele avantaje ale apelării la consultanță profesională:</p>
         <Steps
           items={[
             {

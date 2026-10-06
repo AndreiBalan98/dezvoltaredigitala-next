@@ -34,9 +34,10 @@ Removed everywhere, automatically checked:
 **Funding list `/finantari-nerambursabile/`.** All 12 posts, newest first: image, date, title, first
 sentence. Generated from `content/posts/` (a new post appears automatically).
 
-**Home `/`.** New structure from the existing text: short intro, the 4 services (title + one existing
-sentence each, linking to their pages), the 3 newest articles (generated), "Despre noi", contact
-block. Sentences on PRODUCT.md's Forbidden list ("soluții digitale inovatoare", "potențialul
+**Home `/`.** New structure from the existing text: short intro, the 3 newest articles (generated),
+the 4 services (title + one existing sentence each, linking to their pages), the old home's own
+"Soluțiile noastre pentru dezvoltare" cards (kept, so no offering text is lost — e.g. Promovare Web),
+"Despre noi", ISO certificates, portfolio, contact block. Sentences on PRODUCT.md's Forbidden list ("soluții digitale inovatoare", "potențialul
 nelimitat…") and similar fluff are cut — each one listed.
 
 **Service pages (4) and `/servicii/`.** Rebuilt with the blocks; text, lists and **prices** kept
@@ -71,8 +72,9 @@ the list.
 | `components/articles/index.ts` | new | registry: URL → body, summary, kicker label, corrected title |
 | `components/pages/*.tsx` (+ `pages.module.css`) | new | home, post list, funding list, services index, 4 service pages, contact, legal |
 | `app/page.tsx`, `app/[...path]/page.tsx`, `app/not-found.tsx` | changed | real pages; the placeholder branch is deleted |
-| `lib/content.ts` | changed | `posts()` newest first, `excerpt` helper, legal HTML normaliser |
-| `tests/text-changes.mjs` | new | the cuts / changes list |
+| `lib/content.ts` | changed | `posts()` newest first; `html` on `Entry` |
+| `components/pages/Legal.tsx` | new | `cleanLegalHtml` (legal HTML normaliser) |
+| `tests/text-changes.mjs` | new | the cuts / changes list (`TEXT_CHANGES`) and removed images (`REMOVED_IMAGES`) |
 | `tests/pages-text.test.mjs` | changed | covers all 22 content pages, honours the cuts list |
 | `tests/leftovers.test.mjs` | new | built pages have no builder classes, emoji, fbcdn, old phone, absolute old-site links; every page has real content |
 | `docs/STATE.md` | changed | cuts summary for the PO |
@@ -113,7 +115,14 @@ End-to-end check: PO look-check on the Vercel URL — home, a service page, the 
 - No page merges or redirects in M3 (keeps the risk low the day before the demo).
 - Non-funding posts (EduWebLab, internship, two BIZZ CLUB events) are labelled "Noutăți" instead of
   "Finanțări nerambursabile" above the title. Titles fixed: "Economia circulară", "Start-Up Nation 2025".
-- Links to people's personal Facebook/LinkedIn profiles (with tracking codes) became plain names.
+- Links to Facebook/LinkedIn pages (with tracking codes) became plain names: people's profiles and
+  the company pages of C&A Connect, Diasos Top Distrib and Pizza Deja Vu (`/bizz-club-botosani/`,
+  `/test-2/`, `/test-3/`). A stray eduweblab.ro link on the "Gestiune" heading of the IT page was dropped.
+- Every article and the contact/home pages end with the standard "Ai nevoie de ajutor?" box from the
+  reference article, including its sentence "Dacă vrei să verificăm situația ta în detaliu…" where the
+  old page had no contact sentence of its own. It is the site's standard contact text, not new copy.
+- Summaries on the funding list are each article's first sentence, kept next to the body (`summary`
+  export) rather than generated from the WordPress excerpt (the excerpts contain emoji and fancy letters).
 - Kept photos: the C&A Connect building, event photos, the server close-up (no people), portfolio
   screenshots, certificates. Removed: stock photos with people, decorative SVG icons, the logo strip
   under the portfolio (it repeated the portfolio).

@@ -5,7 +5,7 @@ import PostList from "./PostList";
 export default function FundingList() {
   return (
     <PageLayout label="Articole" title="Finanțări nerambursabile">
-      <PostList />
+      <PostList heading="h2" />
     </PageLayout>
   );
 }

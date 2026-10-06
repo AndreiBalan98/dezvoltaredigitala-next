@@ -2,7 +2,8 @@
 // tests/text-changes.mjs).
 import { Fact, FactGrid, HelpBox, Lead, Note, Prose, Section } from "@/components/article/blocks";
 
-export const summary = "Digitalizarea – acesta este viitorul. Apelul urmează curând, pentru Regiunea Nord-Est.";
+export const summary =
+  "Digitalizarea – acesta este viitorul.";
 
 const ELIGIBLE = [
   {

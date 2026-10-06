@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HelpBox } from "@/components/article/blocks";
 import PostList from "./PostList";
+import { SERVICES } from "./ServicesIndex";
 import styles from "./pages.module.css";
 
 const SOLUTIONS = [
@@ -77,13 +78,29 @@ export default function Home() {
           <h2 id="home-finantari">Finanțări nerambursabile</h2>
           <Link href="/finantari-nerambursabile/">Toate articolele</Link>
         </div>
-        <PostList limit={3} />
+        <PostList limit={3} heading="h3" />
+      </section>
+
+      <section className={`${styles.wide} ${styles.block}`} aria-labelledby="home-servicii">
+        <div className={styles.blockHead}>
+          <h2 id="home-servicii">Servicii</h2>
+          <Link href="/servicii/">Toate serviciile</Link>
+        </div>
+        <div className={`${styles.cards} ${styles.twoCols}`}>
+          {SERVICES.map((s) => (
+            <div key={s.href} className={styles.card}>
+              <h3>
+                <Link href={s.href}>{s.title}</Link>
+              </h3>
+              <p>{s.summary}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className={`${styles.wide} ${styles.block}`} aria-labelledby="home-solutii">
         <div className={styles.blockHead}>
           <h2 id="home-solutii">Soluțiile noastre pentru dezvoltare</h2>
-          <Link href="/servicii/">Toate serviciile</Link>
         </div>
         <div className={`${styles.cards} ${styles.twoCols}`}>
           {SOLUTIONS.map((s) => (

@@ -3,7 +3,7 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M3 — All pages (status: building)
+**Current milestone:** M3 — All pages (status: review — waiting for the PO look-check)
 **Current spec:** docs/specs/004-all-pages.md (approved 2026-10-06)
 **Branch:** main
 
@@ -11,24 +11,40 @@
 - M0 done: `npm run export:wp` copied 12 posts, 11 pages, the footer and 141 images (25.3 MB) from
   the live WordPress site into `content/` and `public/media/`. Counts match the API.
 - M1 done: Next.js 16.3.8 site, a page for every one of the 23 old URLs (unknown URLs → 404).
-- Live at **https://dezvoltaredigitala-next.vercel.app** — Vercel deploys every push to `main`. Repo is public.
-- M2 done (PO look-check 2026-10-06: "top, keep going like this"): the PO picked style **"Editorial"** (B) from two previews. The whole site now uses it
-  (tokens in `app/globals.css`, rules in PRODUCT.md *Design rules*). Built pages:
-  - `/finantare-sisteme-stocare-energie/` — `ArticleLayout` + block components in `components/article/`,
-    body in `components/articles/FinantareStocareEnergie.tsx` (text word for word, checked by a test).
-  - `/calculator-baterii/` — logic in `lib/calculator.ts` (copied from the live script; a test runs the
-    live script's own code on 700 inputs and compares), UI in `components/BatteryCalculator.tsx`.
-  - new header (phone "Meniu" button) and footer on every page.
-  - The other 21 URLs still show the M1 placeholder (title only) — M3's job.
+- M2 done (PO look-check 2026-10-06): style **"Editorial"**; reference article + battery calculator.
+- M3 built: **every old URL is a real page** in the Editorial style — home, funding list, 12 articles,
+  `/servicii/` + 4 service pages, contact, 2 legal pages, 404. Live at
+  **https://dezvoltaredigitala-next.vercel.app** (Vercel deploys every push to `main`; repo is public).
+  - Articles: `components/articles/*.tsx`, registry `components/articles/index.ts` (URL → body, summary,
+    label, corrected title). Other pages: `components/pages/*.tsx`. Routing: `app/[...path]/page.tsx`.
+  - Checks: `tests/pages-text.test.mjs` (every old sentence kept or listed), `tests/leftovers.test.mjs`
+    (no builder classes, emoji, Facebook images, old phone, old-site links, removed images; real
+    content on every page), funding-list order. 58 tests + 23/23 routes.
+
+## What was cut or changed (for the PO)
+Full list with reasons: `tests/text-changes.mjs` (text) and `REMOVED_IMAGES` in the same file.
+- **Everywhere:** emoji and Facebook emoji images; "fancy" bold Unicode letters → normal letters; the
+  "Postări populare" sidebar copied into each post; old phone 0770 102 495 → +40 749 589 848;
+  diacritics and punctuation fixed; links to people's/companies' Facebook and LinkedIn pages → plain names.
+- **Typos fixed:** "locui de munca" → "locuri de muncă" (Start-Up Nation), "erori are pot" → "erori care pot" (Ghidul).
+- **Home:** "Transformă-ți afacerea cu soluții digitale ~~inovatoare~~"; removed "Descoperă potențialul
+  nelimitat…", the labels "Servicii oferite" and "Cu ce ne lăudăm?", the photo of a woman pointing,
+  3 decorative icons and the logo strip; the two fixed article cards → the 3 newest articles (automatic).
+- **Service pages:** stock photos of people (8) and the six-icon grids → a plain list of the 6 areas;
+  "Citește mai mult / Arată mai puțin" buttons gone (all text shown); "soluții eficiente ~~și inovatoare~~".
+- **Contact:** the form (Nume, Telefon, E-mail, Mesaj, "Suport online") — no form for the demo; e-mail typo fixed.
+- **Titles:** "Economia circulară", "Start-Up Nation 2025". Non-funding posts are labelled "Noutăți".
 
 ## Next step
-PO approves spec 004 (M3: every remaining page, older articles cleaned, cuts list) → build → PO look-check.
+PO look-check of M3 (below). After a yes: M4 — Lighthouse (Performance ≥ 90, Accessibility ≥ 95 on the
+article page), link check, final phone/laptop check, 5-step demo script.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
-- Page-builder HTML is stored raw; cleaning it is M3's job.
-- Article bodies are written as TSX with block components (not raw HTML), so every article uses the
-  same blocks; `ARTICLES` in `app/[...path]/page.tsx` maps a URL to its body.
+- Articles are hand-converted into TSX with shared blocks (page-builder HTML was too irregular to clean
+  automatically); legal pages show the exported HTML as is (it was already clean).
+- The text test compares old and new text ignoring diacritics, punctuation and case, so a dropped
+  sentence fails the build unless it is on the cuts list — the cuts list is the PO's review document.
 - `components/RouteHistory.tsx` remembers in-app page visits, because moving between pages inside the
   app does not update `document.referrer` (the calculator's back link needs the previous page).
 
@@ -36,24 +52,25 @@ PO approves spec 004 (M3: every remaining page, older articles cleaned, cuts lis
 - nothing
 
 ## Blocked on the human
-- nothing
+- **PO LOOK-CHECK (M3).** On your phone and laptop open https://dezvoltaredigitala-next.vercel.app/ and look at:
+  1. the home page, top to bottom;
+  2. "Finanțări nerambursabile" in the menu — all 12 articles, newest first; open two older ones;
+  3. "Servicii" → "Creare website" (prices €400 / €800 / €1200);
+  4. "Contact".
+  Done looks like: you answer "approved", or say what to change. M4 does not start before this.
 
 ## Decisions made since last review
-- PO picked direction B "Editorial" (2026-10-06). Fonts Source Serif 4 + Source Sans 3 via `next/font`
-  (PO allowed; no new package, self-hosted at build). Replaces the M1 "system font" decision.
-- Calculator page shows its WordPress title "Calculator punctaj baterii" as heading; small markup
-  fixes listed in spec 003 *Assumptions*. The phone menu closes after tapping a link.
-- Repo stays public (PO decision); PRODUCT.md updated.
-- PO direction 2026-10-06: full remake, structure may change, old URLs keep working (open or 308),
-  look-check every milestone, aim: all pages by 7 Oct.
-- 12 posts exist, not 10: `/test-2/` and `/bizz-club-botosani/` are also published. All keep their URLs.
-- Home page and footer are WordPress theme parts (not in the API); the exporter takes them from the live HTML.
-- `/servicii/` has no text of its own on the old site (only a title).
-- Header: Acasă · Servicii · Finanțări nerambursabile · Contact + button "Eligibilitate preliminară" → `/contact/` (PO 2026-10-06; it was wrongly → calculator. Old site: pop-up application form — rebuild after the demo with the form service).
-- Footer ISO links open the certificate images (ISO/IEC 27001 and ISO/IEC 20000-1 — standard names
-  and short labels read from the certificate scans; the old site only said "Suntem certificați ISO"). The certificates
-  shown on the old site say "data expirării 18.12.2024", with yearly reviews stamped up to Dec 2025 —
-  PO may want to check they are still valid before the demo.
+- PO: fix diacritics and obvious typos in old texts, each non-diacritic fix listed (2026-10-06).
+- PO: header button "Eligibilitate preliminară" → `/contact/` for the demo (2026-10-06). On the old site it
+  opens a pop-up application form (company, CUI, funding programme, balance sheet + Certificat
+  Constatator upload) — rebuild after the demo together with the form-service decision.
+- PO picked direction B "Editorial" (2026-10-06). Fonts Source Serif 4 + Source Sans 3 via `next/font`.
+- Kept photos: C&A Connect building, event photos, server close-up (no people), portfolio
+  screenshots, ISO certificates, article images.
+- Repo stays public (PO decision). 12 posts, all keep their URLs (`/test-2/`, `/test-3/`, `/877-2/` are real posts).
+- Home page and footer are WordPress theme parts (not in the API); the exporter took them from the live HTML.
+- Footer ISO links open the certificate images. The certificates say "data expirării 18.12.2024", with
+  yearly reviews stamped up to Dec 2025 — PO may want to check they are still valid before the demo.
 - Tests use Node's built-in runner (no test library added).
 
 ## Tried and rejected — don't retry
@@ -61,13 +78,13 @@ PO approves spec 004 (M3: every remaining page, older articles cleaned, cuts lis
   `public/` (every page 404, images 200). Fixed by `vercel.json` `"framework": "nextjs"` — keep that file.
 - Paginating the WP API by "stop when a page is short" — a missing item crashed with HTTP 400 instead
   of a clear count error. Now uses the `X-WP-TotalPages` header.
-- Calculator back link from `document.referrer` alone: wrong after in-app navigation (found by the
-  spec reviewer). Use `previousPath()` from `components/RouteHistory.tsx`.
+- Calculator back link from `document.referrer` alone: wrong after in-app navigation. Use `previousPath()`.
 
 ## Known debt
 - Do not run `npm run dev` in a Claude session: Next 16 detects the agent and appends a block to
   `CLAUDE.md` / creates `AGENTS.md` (outside the closed document set). Use `npm run build && npx next start`.
 - `npm install` reports audit warnings from the scaffold's dependencies; not reviewed.
-- 25.3 MB of images are in git. Fine for the demo; revisit before production.
-- Featured images have no stored width/height (the export doesn't keep them); `ArticleLayout` crops
-  them to a fixed ratio (21:9, 4:3 on phones).
+- 25.3 MB of images are in git (some no longer used after M3). Fine for the demo; clean up before production.
+- Featured images have no stored width/height; `ArticleLayout` crops them to a fixed ratio.
+- A new WordPress post would need its own body in `components/articles/` (no automatic import).
+- `npm test` prints a Node "MODULE_TYPELESS_PACKAGE_JSON" notice (tests import `.ts`); harmless.

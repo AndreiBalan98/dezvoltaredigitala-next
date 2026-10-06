@@ -3,7 +3,7 @@
 import { DashList, Gallery, Lead, Prose } from "@/components/article/blocks";
 
 export const summary =
-  "Ieri seară am avut parte de o întâlnire memorabilă la sediul C&A CONNECT SRL, despre importanța contextului în discuții.";
+  "Ieri seară am avut parte de o întâlnire memorabilă la sediul C&A CONNECT SRL, unde Romeo Crețu ne-a oferit o perspectivă clară asupra importanței contextului în discuții.";
 
 const PHOTO = { width: 1538, height: 2048, alt: "Întâlnirea BIZZ CLUB Botoșani la sediul C&A Connect" };
 

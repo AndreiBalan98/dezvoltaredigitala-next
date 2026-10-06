@@ -265,6 +265,16 @@
   font-weight: var(--weight-bold);
 }
 
+.card h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.card h3 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .about {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

@@ -2,7 +2,7 @@
 import { DashList, Figure, Lead, Note, Prose, Section } from "@/components/article/blocks";
 
 export const summary =
-  "Miercuri, 12 februarie 2025, ne reunim la C&A Connect pentru o sesiune de networking, educație și descoperirea unor oportunități strategice.";
+  "Miercuri, 12 februarie 2025, ne reunim la C&A Connect pentru o sesiune de networking, educație și descoperirea unor oportunități strategice pentru business-urile noastre.";
 
 export default function BizzClub() {
   return (

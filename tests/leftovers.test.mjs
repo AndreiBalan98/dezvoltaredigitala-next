@@ -3,6 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { REMOVED_IMAGES } from "./text-changes.mjs";
 
 const root = (p) => new URL(`../${p}`, import.meta.url);
 const builtFile = (urlPath) => `.next/server/app/${urlPath === "/" ? "index" : urlPath.slice(1, -1)}.html`;
@@ -39,8 +40,22 @@ for (const p of paths) {
     assert.ok(existsSync(root(file)), `${file} missing — run \`npm run build\` first`);
     const html = readFileSync(root(file), "utf8");
     const found = CHECKS.filter(([, re]) => re.test(html)).map(([name, re]) => `${name}: ${html.match(re)[0]}`);
-    assert.deepEqual(found, []);
+    const stillShown = REMOVED_IMAGES.filter((r) => r.page === p && html.includes(r.file)).map((r) => r.file);
+    assert.deepEqual([...found, ...stillShown], []);
     // A title-only placeholder has ~5 words; the shortest real page (contact) has ~40.
     assert.ok(mainWords(html) >= 25, `only ${mainWords(html)} words of content — still a placeholder?`);
   });
 }
+
+test("every image on the removed list was on that old page", () => {
+  const oldHtml = Object.fromEntries(
+    ["pages", "posts"].flatMap((dir) =>
+      readdirSync(root(`content/${dir}`))
+        .filter((f) => f.endsWith(".json"))
+        .map((f) => JSON.parse(readFileSync(root(`content/${dir}/${f}`), "utf8")))
+        .map((e) => [e.path, e.html]),
+    ),
+  );
+  const unknown = REMOVED_IMAGES.filter((r) => !oldHtml[r.page]?.includes(r.file)).map((r) => `${r.page} ${r.file}`);
+  assert.deepEqual(unknown, []);
+});

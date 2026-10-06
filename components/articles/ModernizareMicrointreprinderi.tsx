@@ -3,7 +3,7 @@
 import { DashList, HelpBox, Lead, Prose, Section } from "@/components/article/blocks";
 
 export const summary =
-  "Dacă ai o microîntreprindere și îți dorești să o modernizezi, acest program de finanțare este șansa ideală de a accesa fonduri nerambursabile.";
+  "Dacă ai o microîntreprindere și îți dorești să o modernizezi, acest program de finanțare este șansa ideală de a accesa fonduri nerambursabile pentru investiții care îți pot transforma activitatea!";
 
 export default function ModernizareMicrointreprinderi() {
   return (
