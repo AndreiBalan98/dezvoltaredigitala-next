@@ -1,6 +1,6 @@
 # Spec 002 — Setup: empty Next.js site, header, footer, tokens
 
-**Milestone:** M1 · **Status:** approved (PO: "plan approved, run M0 and M1", 2026-10-06) · **Date:** 2026-10-06
+**Milestone:** M1 · **Status:** review (approved by PO: "plan approved, run M0 and M1", 2026-10-06) · **Date:** 2026-10-06
 
 ## Goal
 An empty but real Next.js site: shared header and footer, the design tokens from PRODUCT.md, and a
@@ -21,8 +21,9 @@ placeholder page for every old URL, deployed on Vercel from GitHub `main`.
 - `npm test` uses Node's built-in test runner (`node --test`), no test library.
 - `npm run check:routes` (`scripts/check-routes.mjs`): after `next build`, every exported path has an
   `.html` file in the build output; missing → exit 1.
-- Footer content: company details, ANPC + SOL links, ISO certificates, portfolio — taken from the
-  exported site footer text, phone `+40 749 589 848` (PRODUCT.md default).
+- Footer content: company details, ANPC + SOL links, ISO certificates (ISO/IEC 27001, ISO/IEC 20000-1,
+  linking to the certificate images), portfolio — taken from the exported `content/site/footer.html`
+  and home page; phone `+40 749 589 848` (PRODUCT.md default).
 
 ## Files and interfaces
 | File / interface | New / changed | What |

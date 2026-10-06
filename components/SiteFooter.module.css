@@ -1,0 +1,48 @@
+.footer {
+  margin-top: var(--heading-space);
+  border-top: 1px solid var(--line);
+  padding: 40px 0 14px;
+  font-size: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+
+.heading {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.text {
+  margin: 0 0 10px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 6px;
+}
+
+.badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.badges img {
+  width: 200px;
+  height: auto;
+}
+
+.bottom {
+  margin-top: 32px;
+  border-top: 1px solid var(--line);
+}
