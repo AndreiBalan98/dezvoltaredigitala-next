@@ -1,6 +1,6 @@
 # Spec 003 — Style direction + the reference pages (article + calculator)
 
-**Milestone:** M2 · **Status:** approved (PO, 2026-10-06; web font for B allowed) · **Date:** 2026-10-06
+**Milestone:** M2 · **Status:** done (PO look-check 2026-10-06: "top, keep going like this"; web font for B allowed) · **Date:** 2026-10-06
 
 ## Goal
 The PO compares two clearly different looks on the same real article and picks one. Then

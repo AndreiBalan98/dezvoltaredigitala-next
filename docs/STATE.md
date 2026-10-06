@@ -3,8 +3,8 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M2 — Style direction + reference pages (status: review — waiting for the PO look-check)
-**Current spec:** docs/specs/003-style-and-reference-pages.md (approved 2026-10-06)
+**Current milestone:** M3 — All pages (status: spec — waiting for PO approval of spec 004)
+**Current spec:** docs/specs/004-all-pages.md (draft); M2 spec 003 done
 **Branch:** main
 
 ## Where we are
@@ -12,7 +12,7 @@
   the live WordPress site into `content/` and `public/media/`. Counts match the API.
 - M1 done: Next.js 16.3.8 site, a page for every one of the 23 old URLs (unknown URLs → 404).
 - Live at **https://dezvoltaredigitala-next.vercel.app** — Vercel deploys every push to `main`. Repo is public.
-- M2 built: the PO picked style **"Editorial"** (B) from two previews. The whole site now uses it
+- M2 done (PO look-check 2026-10-06: "top, keep going like this"): the PO picked style **"Editorial"** (B) from two previews. The whole site now uses it
   (tokens in `app/globals.css`, rules in PRODUCT.md *Design rules*). Built pages:
   - `/finantare-sisteme-stocare-energie/` — `ArticleLayout` + block components in `components/article/`,
     body in `components/articles/FinantareStocareEnergie.tsx` (text word for word, checked by a test).
@@ -22,8 +22,7 @@
   - The other 21 URLs still show the M1 placeholder (title only) — M3's job.
 
 ## Next step
-PO look-check of M2 (below). After a yes: M3 — write spec 004 (all remaining pages: home, list,
-services, contact, legal, 10 older articles cleaned from page-builder HTML, 404).
+PO approves spec 004 (M3: every remaining page, older articles cleaned, cuts list) → build → PO look-check.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
@@ -37,12 +36,7 @@ services, contact, legal, 10 older articles cleaned from page-builder HTML, 404)
 - nothing
 
 ## Blocked on the human
-- **PO LOOK-CHECK (M2).** On your phone and laptop open:
-  1. https://dezvoltaredigitala-next.vercel.app/finantare-sisteme-stocare-energie/
-  2. Tap **Calculează-ți punctajul**. Tick all 6 boxes, type 15 / 25000 / 10000.
-  3. Done looks like: score **57,5 / 100**. Tap **Aplică** → **87,5**. The link at the top says "← Înapoi"
-     and goes back to the article.
-  4. Answer "approved" or say what to change. M3 does not start before this.
+- **PO: approve spec 004** and decide whether to fix diacritics/typos in the old texts.
 
 ## Decisions made since last review
 - PO picked direction B "Editorial" (2026-10-06). Fonts Source Serif 4 + Source Sans 3 via `next/font`

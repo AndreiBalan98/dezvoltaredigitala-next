@@ -26,7 +26,7 @@ PO chose this knowing it leaves fewer approval rounds; most-visited pages go fir
 - [x] **HUMAN TASK:** PO imports the GitHub repo on vercel.com (3 clicks, written in STATE.md); preview URL works
 **Out of scope:** any page content.
 
-## M2 — Style direction + the reference pages · status: review · ~2 h
+## M2 — Style direction + the reference pages · status: done · ~2 h
 **Outcome:** (a) two distinct style directions applied to the same article page, PO picks one;
 (b) `/finantare-sisteme-stocare-energie/` and `/calculator-baterii/` built in the chosen style from
 reusable components, with a new header and footer.
@@ -36,9 +36,9 @@ reusable components, with a new header and footer.
 - [x] calculator logic ported unchanged into its own module, with tests: 5 fixed inputs give the
       same score / AFM / own-contribution as the live calculator
 - [x] both pages pass at 375px and 1280px (screenshots in the PR/commit evidence)
-- [ ] **PO LOOK-CHECK** on the Vercel URL: approve the look, or say what to change. Nothing else starts before this.
+- [x] **PO LOOK-CHECK** on the Vercel URL: approve the look, or say what to change. Nothing else starts before this. (PO: "top, keep going like this", 2026-10-06)
 
-## M3 — All pages · status: todo · ~2 h
+## M3 — All pages · status: spec · ~2 h
 **Outcome:** every URL in PRODUCT.md's MVP list renders with the approved look; structure may change
 (e.g. merged service pages), old URLs redirect where a page moved.
 **Definition of Done:**
