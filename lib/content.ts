@@ -9,6 +9,7 @@ export type Entry = {
   path: string;
   title: string;
   date: string;
+  featuredImage?: { src: string; alt: string } | null;
 };
 
 const CONTENT_DIR = path.join(process.cwd(), "content");

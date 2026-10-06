@@ -1,7 +1,6 @@
 .header {
   border-bottom: 1px solid var(--line);
   background: var(--bg);
-  padding: 14px 0;
 }
 
 .inner {
@@ -9,24 +8,25 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px 24px;
+  gap: 0 24px;
+  min-height: 76px;
 }
 
 .logo {
   display: block;
   line-height: 0;
+  padding: 14px 0;
 }
 
 .logo img {
-  width: 140px;
+  width: 136px;
   height: auto;
 }
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 8px 22px;
+  gap: 4px 28px;
   font-size: 16px;
 }
 
@@ -38,12 +38,14 @@
 
 .link:hover {
   color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .cta {
   display: inline-block;
-  padding: 9px 16px;
-  border-radius: 10px;
+  padding: 10px 18px;
+  border-radius: 8px;
   background: var(--accent);
   color: #fff;
   text-decoration: none;
@@ -51,18 +53,77 @@
 }
 
 .cta:hover {
-  background: #1b5068;
+  background: #1b4f66;
 }
 
-@media (max-width: 600px) {
+.toggle {
+  display: none;
+  font: inherit;
+  font-size: 16px;
+  font-weight: var(--weight-bold);
+  color: var(--text);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+/* Direction B: thin ink rule, quiet small-caps links, outlined button. */
+:global(body:has(.dir-b)) .header {
+  border-bottom-color: var(--text);
+}
+
+:global(body:has(.dir-b)) .link {
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+:global(body:has(.dir-b)) .cta {
+  border-radius: 0;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-size: 15px;
+}
+
+:global(body:has(.dir-b)) .cta:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+:global(body:has(.dir-b)) .toggle {
+  border-radius: 0;
+  border-color: var(--text);
+}
+
+@media (max-width: 860px) {
+  .toggle {
+    display: block;
+  }
+
   .nav {
+    display: none;
     width: 100%;
-    gap: 6px 16px;
-    font-size: 15px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 4px 0 16px;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .link {
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
   }
 
   .cta {
-    width: 100%;
+    margin-top: 12px;
     text-align: center;
   }
 }

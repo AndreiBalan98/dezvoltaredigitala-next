@@ -15,19 +15,28 @@
 - Live at **https://dezvoltaredigitala-next.vercel.app** — all 23 old URLs return 200, unknown URLs 404,
   `/contact` → 308 → `/contact/`. Vercel deploys every push to `main`. Repo is public (PO decision).
 
+- M2 Part 1 done: two style directions on the same article, at `/stil-a/` ("Clar") and `/stil-b/`
+  ("Editorial"). New header (phone "Meniu" button) and footer restyle; article block components in
+  `components/article/`, article body in `components/articles/FinantareStocareEnergie.tsx`.
+
 ## Next step
-M2 under the new direction (PRODUCT.md / ROADMAP.md): write spec 003 → PO approves → two style
-directions on `/finantare-sisteme-stocare-energie/` → PO picks → build that article + calculator.
+PO picks A or B (spec 003, Part 1 gate) → Part 2: delete the preview pages and the losing direction's
+CSS/fonts, update PRODUCT.md design rules, build the real article page + calculator (`lib/calculator.ts`
++ parity tests), then PO look-check.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
 - Page-builder HTML is stored raw; cleaning it is M3's job.
+- Direction B is switched on by a `.dir-b` marker on the page (`body:has(.dir-b)` in CSS), so one build
+  shows both directions with the same components. Temporary — removed in Part 2.
 
 ## In progress / committed but unfinished
-- nothing
+- M2 Part 2 not started (waits for the PO's pick). Article URL still shows the placeholder.
 
 ## Blocked on the human
-- nothing
+- **PO: pick direction A or B** — open https://dezvoltaredigitala-next.vercel.app/stil-a/ and
+  https://dezvoltaredigitala-next.vercel.app/stil-b/ on phone and laptop; answer "A", "B", or
+  "A/B, but with … from the other".
 
 ## Decisions made since last review
 - Repo stays public (PO decision); PRODUCT.md updated.

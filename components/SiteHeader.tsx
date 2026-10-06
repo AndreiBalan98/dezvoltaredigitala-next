@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MenuToggle from "./MenuToggle";
 import styles from "./SiteHeader.module.css";
 
 const NAV = [
@@ -16,7 +17,7 @@ export default function SiteHeader() {
         <Link href="/" className={styles.logo} aria-label="Dezvoltare digitală – acasă">
           <Image src="/media/2025/02/logo-1.png" alt="" width={335} height={129} priority />
         </Link>
-        <nav aria-label="Meniu principal" className={styles.nav}>
+        <MenuToggle>
           {NAV.map((item) => (
             <Link key={item.href} href={item.href} className={styles.link}>
               {item.label}
@@ -25,7 +26,7 @@ export default function SiteHeader() {
           <Link href="/calculator-baterii/" className={styles.cta}>
             Eligibilitate preliminară
           </Link>
-        </nav>
+        </MenuToggle>
       </div>
     </header>
   );
