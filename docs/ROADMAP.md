@@ -26,7 +26,7 @@ PO chose this knowing it leaves fewer approval rounds; most-visited pages go fir
 - [x] **HUMAN TASK:** PO imports the GitHub repo on vercel.com (3 clicks, written in STATE.md); preview URL works
 **Out of scope:** any page content.
 
-## M2 — Style direction + the reference pages · status: todo · ~2 h
+## M2 — Style direction + the reference pages · status: building · ~2 h
 **Outcome:** (a) two distinct style directions applied to the same article page, PO picks one;
 (b) `/finantare-sisteme-stocare-energie/` and `/calculator-baterii/` built in the chosen style from
 reusable components, with a new header and footer.

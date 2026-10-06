@@ -3,8 +3,8 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M2 — Style direction + reference pages (status: todo)
-**Current spec:** — (next: docs/specs/003-…; 001 and 002 are done)
+**Current milestone:** M2 — Style direction + reference pages (status: building)
+**Current spec:** docs/specs/003-style-and-reference-pages.md (approved 2026-10-06)
 **Branch:** main
 
 ## Where we are
