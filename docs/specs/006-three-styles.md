@@ -22,21 +22,24 @@ styles"*. Inspiration only — no Apple/Linear logos, names, icons or copied tex
 
 **C — "Apple"-inspired, shown as "Luminos"** (bright, product-page calm)
 - Colours: white `#ffffff` and light grey `#f5f5f7` alternating surfaces, text `#1d1d1f`, muted
-  `#6e6e73`, link/accent blue `#0066cc` (hover `#0071e3` buttons / `#004f9e` links), line `#d2d2d7`.
-- Type: **Inter** (400/600/700), tight tracking on big headings (-0.02em), very large centred titles
-  (56px desktop / 36px phone), body 17px.
+  `#6e6e73`, link/accent blue `#0066cc` (hover `#004f9e`), buttons `#0071e3` (Apple's own button blue;
+  hover `#0062c4`), line `#d2d2d7`.
+- Type: **Inter** (variable), tight tracking on big headings (-0.02 to -0.035em), very large centred
+  titles (article 56px / 36px phone; home hero 64px / 40px phone), body 17px.
 - Blocks: grey rounded panels (18px corners) instead of rules; facts and score figures as tiles on
-  `#f5f5f7`; pill-shaped buttons (fully rounded) and "Află mai mult ›" style text links; header a slim
-  translucent-white bar with small 13px links; images with rounded corners. Lots of white space.
+  `#f5f5f7`; pill-shaped buttons (fully rounded) and "Toate articolele ›" style text links; header a
+  slim off-white `#fbfbfd` bar (opaque — no blur, glassmorphism stays forbidden) with 14px links;
+  images with rounded corners. Lots of white space.
 
 **D — "Linear"-inspired, shown as "Nocturn"** (dark, precise software look)
-- Colours: page `#08090a`, raised surfaces `#111214`, text `#f7f8f8`, secondary `#b4bcd0`, muted
-  `#8a8f98`, accent indigo `#5e6ad2` (light variant `#828fff` for links on dark), lines
-  `rgba(255,255,255,0.08)`.
+- Colours: page `#08090a`, raised surfaces `#141517`, headings `#f7f8f8`, text `#c9ced6`/`#eceef1`,
+  muted `#8a8f98`, accent light indigo `#8b94ff` (links, labels; indigo `#5e6ad2` is only 4.2:1 as text
+  on black), lines `#26282d` (solid, so contrast can be tested).
 - Type: **Inter** (400/500/600), headings 600 with tight tracking, smaller labels in 500.
-- Blocks: hairline-bordered cards with 8–12px corners on raised surfaces; facts as a bordered grid;
-  numbered sections as muted mono-like small labels; buttons indigo, 6px corners; header black with
-  1px hairline under it.
+- Blocks: hairline-bordered cards with 12px corners on raised surfaces; numbered sections as small
+  muted labels; buttons light (`#eceef1`, dark text, 8px corners) as on Linear's own site — chosen
+  over indigo buttons after the screenshots; header black with a 1px hairline under it; the logo is
+  brightened (its dark teal is too dim on black).
 - **Note:** PRODUCT.md forbade "dark mode for the demo". Linear's look is dark by nature, so this is
   a dark *style* chosen by the PO (not automatic dark mode following the phone setting). No gradients.
 
@@ -99,6 +102,9 @@ at 375px and 1280px, sent to the PO with the Vercel URL.
 - Style names shown on the switcher: Editorial, Luminos (Apple-inspired), Nocturn (Linear-inspired) —
   Romanian words, no brand names on the client's site.
 - Inter for both new styles (the closest open font to Apple's SF Pro and Linear's own font).
+- Values adjusted from the first draft after looking at the screenshots (listed above in C and D):
+  Luminos button blue, hero size, opaque header; Nocturn light buttons, lighter accent, 8px corners.
+- `?stil=` is removed from the address after it is applied, so a reload keeps a later switcher choice.
 
 ## Risks
 - Three styles on one HTML structure: C and D can differ in type, colour and block treatment but not

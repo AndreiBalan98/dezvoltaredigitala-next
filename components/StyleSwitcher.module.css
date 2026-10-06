@@ -1,0 +1,52 @@
+/* Style switcher (spec 006): a small segmented control at the top of the home page. */
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: fit-content;
+  margin: 0 auto 48px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.label {
+  padding: 0 8px 0 10px;
+  font-size: 12px;
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.option {
+  min-height: 36px;
+  padding: 0 14px;
+  font: inherit;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+}
+
+.option:hover {
+  background: var(--tint);
+}
+
+.option[aria-pressed="true"] {
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: var(--weight-bold);
+}
+
+@media (max-width: 640px) {
+  .switcher {
+    margin-bottom: 32px;
+  }
+}

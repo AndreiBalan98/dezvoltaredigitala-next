@@ -81,3 +81,32 @@
     gap: 28px;
   }
 }
+
+/* Candidate styles (spec 006): "Luminos" (Apple-inspired) and "Nocturn" (Linear-inspired). */
+
+:global([data-stil="luminos"]) .footer {
+  border-top: 0;
+  background: var(--tint);
+  font-size: 13px;
+}
+
+:global([data-stil="nocturn"]) .footer {
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+:global([data-stil="luminos"]) .heading,
+:global([data-stil="nocturn"]) .heading {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:global([data-stil="nocturn"]) .footer a {
+  color: var(--muted);
+}
+
+:global([data-stil="nocturn"]) .footer a:hover {
+  color: var(--text);
+}

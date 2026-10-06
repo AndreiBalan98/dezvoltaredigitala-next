@@ -148,15 +148,15 @@
   display: inline-block;
   margin-top: 14px;
   padding: 12px 26px;
-  background: var(--accent);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-text);
   font-size: 16px;
   font-weight: var(--weight-bold);
   text-decoration: none;
 }
 
 .button:hover {
-  background: var(--accent-dark);
+  background: var(--button-hover);
 }
 
 /* Score split: two criteria with large point figures */
@@ -327,8 +327,8 @@
 }
 
 .priceLink:hover {
-  background: var(--accent);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-text);
 }
 
 /* Running text */
@@ -463,5 +463,185 @@
   .gallery,
   .prices {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Candidate styles (spec 006): "Luminos" (Apple-inspired) and "Nocturn" (Linear-inspired). */
+
+:global([data-stil="luminos"]) .article,
+:global([data-stil="nocturn"]) .article {
+  padding-top: 72px;
+}
+
+:global([data-stil="luminos"]) .kicker,
+:global([data-stil="nocturn"]) .kicker {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:global([data-stil="luminos"]) .kicker {
+  color: var(--muted);
+}
+
+:global([data-stil="luminos"]) .header {
+  text-align: center;
+}
+
+:global([data-stil="luminos"]) .title {
+  font-size: 56px;
+  line-height: 1.07;
+  letter-spacing: -0.028em;
+}
+
+:global([data-stil="nocturn"]) .title {
+  font-size: 52px;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+:global([data-stil="luminos"]) .figure,
+:global([data-stil="nocturn"]) .figure {
+  border-radius: var(--radius);
+}
+
+:global([data-stil="nocturn"]) .figure {
+  border: 1px solid var(--line);
+}
+
+:global([data-stil="luminos"]) .lead,
+:global([data-stil="nocturn"]) .lead {
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+:global([data-stil="nocturn"]) .lead {
+  color: var(--text);
+}
+
+:global([data-stil="luminos"]) .body h2,
+:global([data-stil="nocturn"]) .body h2 {
+  font-size: 30px;
+}
+
+:global([data-stil="luminos"]) .sectionTitle::before {
+  content: none;
+}
+
+:global([data-stil="nocturn"]) .sectionTitle::before {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+:global([data-stil="luminos"]) .facts,
+:global([data-stil="nocturn"]) .facts,
+:global([data-stil="luminos"]) .score,
+:global([data-stil="nocturn"]) .score {
+  gap: 16px;
+}
+
+:global([data-stil="luminos"]) .fact,
+:global([data-stil="nocturn"]) .fact,
+:global([data-stil="luminos"]) .crit,
+:global([data-stil="nocturn"]) .crit,
+:global([data-stil="luminos"]) .price,
+:global([data-stil="nocturn"]) .price {
+  padding: 24px;
+  border: var(--card-border);
+  border-radius: var(--radius);
+  background: var(--tint);
+}
+
+:global([data-stil="luminos"]) .factTitle,
+:global([data-stil="nocturn"]) .factTitle {
+  font-size: 21px;
+  letter-spacing: -0.01em;
+}
+
+:global([data-stil="luminos"]) .critPoints,
+:global([data-stil="nocturn"]) .critPoints {
+  color: var(--text);
+  letter-spacing: -0.03em;
+}
+
+:global([data-stil="luminos"]) .critPoints {
+  font-weight: 700;
+}
+
+:global([data-stil="luminos"]) .action,
+:global([data-stil="nocturn"]) .action {
+  padding: 36px 40px;
+  border: var(--card-border);
+  border-radius: var(--radius);
+  background: var(--tint);
+}
+
+:global([data-stil="luminos"]) .button,
+:global([data-stil="nocturn"]) .button,
+:global([data-stil="luminos"]) .priceLink,
+:global([data-stil="nocturn"]) .priceLink {
+  border-radius: var(--radius-control);
+}
+
+:global([data-stil="nocturn"]) .priceLink {
+  border-color: var(--line);
+  color: var(--text);
+}
+
+:global([data-stil="luminos"]) .note,
+:global([data-stil="nocturn"]) .note {
+  border-top-color: var(--line);
+}
+
+:global([data-stil="luminos"]) .iconRow {
+  border-top: 0;
+}
+
+:global([data-stil="luminos"]) .iconRow + .iconRow {
+  margin-top: 12px;
+}
+
+:global([data-stil="luminos"]) .iconBox,
+:global([data-stil="nocturn"]) .iconBox,
+:global([data-stil="luminos"]) .contactIcon,
+:global([data-stil="nocturn"]) .contactIcon {
+  border: var(--card-border);
+  border-radius: 10px;
+  background: var(--tint);
+}
+
+:global([data-stil="luminos"]) .help,
+:global([data-stil="nocturn"]) .help {
+  border-top: 1px solid var(--line);
+}
+
+:global([data-stil="luminos"]) .inlineFigure img,
+:global([data-stil="nocturn"]) .inlineFigure img,
+:global([data-stil="luminos"]) .gallery img,
+:global([data-stil="nocturn"]) .gallery img {
+  border-radius: 12px;
+}
+
+@media (max-width: 640px) {
+  :global([data-stil="luminos"]) .article,
+  :global([data-stil="nocturn"]) .article {
+    padding-top: 40px;
+  }
+
+  :global([data-stil="luminos"]) .title,
+  :global([data-stil="nocturn"]) .title {
+    font-size: 36px;
+  }
+
+  :global([data-stil="luminos"]) .action,
+  :global([data-stil="nocturn"]) .action {
+    padding: 24px 22px;
   }
 }
