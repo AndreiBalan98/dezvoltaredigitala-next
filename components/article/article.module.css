@@ -1,4 +1,5 @@
-/* Article frame and blocks. Direction A first; direction B overrides follow at the bottom. */
+/* Article frame and blocks — direction "Editorial": rules instead of boxes, serif display type,
+   numbered sections, one tinted action block per page. */
 
 .article {
   padding: 56px var(--gutter) 0;
@@ -13,24 +14,26 @@
 
 .kicker {
   margin: 0 0 12px;
-  font-size: var(--small-size);
-  color: var(--muted);
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
 }
 
 .title {
   margin: 0;
-  font-size: 44px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  font-size: 54px;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
 }
 
 .figure {
   position: relative;
-  max-width: var(--reading-width);
-  aspect-ratio: 16 / 9;
-  margin: 32px auto 40px;
+  max-width: 1040px;
+  aspect-ratio: 21 / 9;
+  margin: 40px auto 48px;
   overflow: hidden;
-  border-radius: var(--radius);
   background: var(--tint);
 }
 
@@ -45,13 +48,15 @@
 
 .body h2 {
   margin-bottom: 16px;
-  font-size: 28px;
+  font-size: 32px;
 }
 
 .lead {
-  font-size: var(--lead-size);
-  line-height: 1.6;
   margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  font-size: 22px;
+  line-height: 1.55;
 }
 
 .section {
@@ -62,17 +67,28 @@
   margin-top: 16px;
 }
 
-/* Fact cards */
+.sectionTitle::before {
+  counter-increment: section;
+  content: counter(section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* Facts */
 .facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 32px;
 }
 
 .fact {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 22px;
+  padding-top: 16px;
+  border-top: 2px solid var(--text);
   font-size: 16px;
   line-height: 1.55;
   color: var(--muted);
@@ -81,16 +97,18 @@
 .factTitle {
   display: block;
   margin-bottom: 8px;
-  font-size: 20px;
-  line-height: 1.3;
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
   color: var(--text);
 }
 
 /* Action block (one per page) */
 .action {
   margin-top: var(--heading-space);
-  padding: 32px;
-  border-radius: 18px;
+  padding: 32px 36px;
+  border-left: 4px solid var(--accent);
   background: var(--tint);
 }
 
@@ -121,56 +139,41 @@
   display: inline-block;
   margin-top: 14px;
   padding: 12px 26px;
-  border-radius: 8px;
   background: var(--accent);
   color: #fff;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: var(--weight-bold);
   text-decoration: none;
 }
 
 .button:hover {
-  background: #1b4f66;
+  background: var(--accent-dark);
 }
 
-/* Score split: two halves of a 100-point bar */
+/* Score split: two criteria with large point figures */
 .score {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
   margin-top: 22px;
 }
 
 .crit {
+  padding-top: 16px;
+  border-top: 1px solid var(--text);
   font-size: 16px;
   line-height: 1.55;
   color: var(--muted);
 }
 
-.crit:first-child {
-  padding-right: 20px;
-}
-
 .critPoints {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  margin-bottom: 14px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 19px;
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-heading);
+  font-size: 56px;
   font-weight: var(--weight-bold);
-}
-
-.crit:first-child .critPoints {
-  margin-right: -20px;
-  border-radius: 10px 0 0 10px;
-}
-
-.crit:last-child .critPoints {
-  background: var(--accent-2);
-  color: #0e2a36;
-  border-radius: 0 10px 10px 0;
+  line-height: 1;
+  color: var(--accent);
 }
 
 .critTitle {
@@ -193,14 +196,13 @@
   grid-template-columns: 44px minmax(0, 1fr);
   gap: 16px;
   align-items: start;
-  padding: 20px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
   font-size: 17px;
 }
 
 .iconRow + .iconRow {
-  margin-top: 14px;
+  margin-top: 20px;
 }
 
 .iconBox,
@@ -210,8 +212,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  background: var(--tint);
+  border: 1px solid var(--line);
   color: var(--accent);
 }
 
@@ -223,9 +224,8 @@
 /* Help box */
 .help {
   margin-top: var(--heading-space);
-  padding: 28px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  padding-top: 24px;
+  border-top: 2px solid var(--text);
 }
 
 .help > * + * {
@@ -234,7 +234,7 @@
 
 .help a {
   color: var(--accent);
-  font-weight: 600;
+  font-weight: var(--weight-bold);
   text-decoration: none;
 }
 
@@ -256,7 +256,6 @@
   flex: none;
   width: 38px;
   height: 38px;
-  border-radius: 10px;
 }
 
 .contactIcon .icon {
@@ -277,184 +276,34 @@
   }
 
   .title {
-    font-size: 32px;
+    font-size: 36px;
+  }
+
+  .figure {
+    aspect-ratio: 4 / 3;
+    margin: 28px auto 32px;
   }
 
   .lead {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .body h2 {
-    font-size: 24px;
+    font-size: 27px;
   }
 
   .facts,
   .score {
     grid-template-columns: 1fr;
-    row-gap: 20px;
+    row-gap: 24px;
   }
 
-  .crit:first-child {
-    padding-right: 0;
-  }
-
-  .crit:first-child .critPoints,
-  .crit:last-child .critPoints {
-    margin-right: 0;
-    border-radius: 10px;
-  }
-
-  .action,
-  .help {
-    padding: 22px;
+  .action {
+    padding: 24px 22px;
   }
 
   .iconRow {
     grid-template-columns: 1fr;
     gap: 12px;
-  }
-}
-
-/* ===== Direction B — "Editorial": rules instead of boxes, serif display type, numbered sections ===== */
-
-:global(body:has(.dir-b)) .kicker {
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-}
-
-:global(body:has(.dir-b)) .title {
-  font-size: 54px;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-}
-
-:global(body:has(.dir-b)) .figure {
-  max-width: 1040px;
-  aspect-ratio: 21 / 9;
-  margin: 40px auto 48px;
-}
-
-:global(body:has(.dir-b)) .body h2 {
-  font-size: 32px;
-}
-
-:global(body:has(.dir-b)) .lead {
-  font-size: 22px;
-  line-height: 1.55;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--line);
-}
-
-:global(body:has(.dir-b)) .sectionTitle::before {
-  counter-increment: section;
-  content: counter(section, decimal-leading-zero);
-  display: block;
-  margin-bottom: 6px;
-  font-family: var(--font);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-}
-
-:global(body:has(.dir-b)) .facts {
-  gap: 32px;
-}
-
-:global(body:has(.dir-b)) .fact {
-  border: 0;
-  border-top: 2px solid var(--text);
-  padding: 16px 0 0;
-}
-
-:global(body:has(.dir-b)) .factTitle {
-  font-family: var(--font-heading);
-  font-size: 26px;
-  line-height: 1.2;
-  font-weight: 600;
-}
-
-:global(body:has(.dir-b)) .action {
-  padding: 32px 36px;
-  border-radius: 0;
-  border-left: 4px solid var(--accent);
-}
-
-:global(body:has(.dir-b)) .button {
-  border-radius: 0;
-}
-
-:global(body:has(.dir-b)) .button:hover {
-  background: #17463a;
-}
-
-:global(body:has(.dir-b)) .score {
-  gap: 32px;
-}
-
-:global(body:has(.dir-b)) .crit,
-:global(body:has(.dir-b)) .crit:first-child {
-  padding: 16px 0 0;
-  border-top: 1px solid var(--text);
-}
-
-:global(body:has(.dir-b)) .critPoints,
-:global(body:has(.dir-b)) .crit:first-child .critPoints,
-:global(body:has(.dir-b)) .crit:last-child .critPoints {
-  display: block;
-  height: auto;
-  margin: 0 0 8px;
-  background: none;
-  border-radius: 0;
-  color: var(--accent);
-  font-family: var(--font-heading);
-  font-size: 56px;
-  line-height: 1;
-}
-
-:global(body:has(.dir-b)) .iconRow {
-  border: 0;
-  border-top: 1px solid var(--line);
-  border-radius: 0;
-  padding: 20px 0 0;
-}
-
-:global(body:has(.dir-b)) .iconBox,
-:global(body:has(.dir-b)) .contactIcon {
-  background: none;
-  border: 1px solid var(--line);
-  border-radius: 0;
-}
-
-:global(body:has(.dir-b)) .help {
-  border: 0;
-  border-top: 2px solid var(--text);
-  border-radius: 0;
-  padding: 24px 0 0;
-}
-
-@media (max-width: 640px) {
-  :global(body:has(.dir-b)) .title {
-    font-size: 36px;
-  }
-
-  :global(body:has(.dir-b)) .figure {
-    aspect-ratio: 4 / 3;
-    margin: 28px auto 32px;
-  }
-
-  :global(body:has(.dir-b)) .lead {
-    font-size: 19px;
-  }
-
-  :global(body:has(.dir-b)) .body h2 {
-    font-size: 27px;
-  }
-
-  :global(body:has(.dir-b)) .action {
-    padding: 24px 22px;
   }
 }

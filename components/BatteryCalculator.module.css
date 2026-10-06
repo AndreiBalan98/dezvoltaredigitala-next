@@ -1,0 +1,397 @@
+/* Battery calculator — direction "Editorial". Red and amber are status colours, not accents. */
+
+.calc {
+  --err: #a12622;
+  --err-bg: #fbeceb;
+  --warn: #7a5000;
+  --warn-bg: #fbf1dc;
+
+  max-width: var(--reading-width);
+  margin: 0 auto;
+  padding: 40px var(--gutter) 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.intro {
+  margin: 0 0 32px;
+  font-size: 19px;
+  color: var(--muted);
+}
+
+/* Cards: a rule on top instead of a box */
+.card {
+  min-width: 0;
+  margin: 0 0 36px;
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 2px solid var(--text);
+}
+
+.cardBad {
+  border-top-color: var(--err);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+}
+
+.step span {
+  font-family: var(--font);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.step span::before {
+  content: "0";
+}
+
+/* Conditions */
+/* A floated legend sits inside the fieldset, under its top rule, like the result card's heading. */
+legend.step {
+  float: left;
+  width: 100%;
+}
+
+.checks,
+.grid {
+  clear: both;
+}
+
+.checks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.checks label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.checks input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+
+/* Fields */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field > label {
+  margin: 0 0 6px;
+  font-weight: var(--weight-bold);
+}
+
+.input {
+  position: relative;
+}
+
+.input input {
+  width: 100%;
+  height: 48px;
+  padding: 0 52px 0 12px;
+  font: inherit;
+  font-size: 18px;
+  color: var(--text);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--text);
+}
+
+.input input:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 0;
+}
+
+.input input[aria-invalid="true"] {
+  border-color: var(--err);
+}
+
+.input input.warned {
+  border-color: #c99200;
+}
+
+.unit {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.hint {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.hint.err {
+  color: var(--err);
+  font-weight: var(--weight-bold);
+}
+
+.hint.warn {
+  color: var(--warn);
+  font-weight: var(--weight-bold);
+}
+
+/* Result */
+.total {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.total strong {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--accent);
+}
+
+.total span {
+  color: var(--muted);
+}
+
+.total.empty strong {
+  color: var(--line);
+}
+
+.total.bad strong,
+.total.bad span {
+  color: var(--err);
+}
+
+.bar {
+  height: 8px;
+  margin-bottom: 12px;
+  background: var(--tint);
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.context {
+  margin: 0 0 20px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.rows {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 0;
+  margin: 0;
+}
+
+.rows dt {
+  color: var(--muted);
+}
+
+.rows dd {
+  margin: 0;
+  padding-left: 16px;
+  font-weight: var(--weight-bold);
+  text-align: right;
+}
+
+.rows .sep {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.msg {
+  margin-top: 16px;
+  padding: 12px 14px;
+  font-size: 16px;
+}
+
+.info {
+  background: var(--tint);
+  color: var(--text);
+}
+
+.error {
+  background: var(--err-bg);
+  color: var(--err);
+}
+
+.tip {
+  border-left: 4px solid var(--accent);
+  background: var(--tint);
+}
+
+.tips {
+  display: grid;
+  gap: 10px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tips li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.apply {
+  flex: none;
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  color: var(--accent);
+  background: #fff;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+}
+
+.apply:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.note {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.cta {
+  display: inline-block;
+  padding: 12px 22px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.cta:hover {
+  background: var(--accent-dark);
+}
+
+/* Sticky score bar: phones and tablets only, while the result is off screen */
+.sticky {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .sticky.show {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--bg);
+    border-top: 2px solid var(--text);
+  }
+
+  .sticky strong {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    color: var(--accent);
+  }
+
+  .sticky button {
+    padding: 8px 14px;
+    font: inherit;
+    font-weight: var(--weight-bold);
+    color: #fff;
+    background: var(--accent);
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 480px) {
+  .calc {
+    padding-top: 28px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .total strong {
+    font-size: 52px;
+  }
+
+  .tips li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

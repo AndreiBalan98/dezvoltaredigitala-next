@@ -1,18 +1,17 @@
-/* Design tokens. Direction A ("Clar", the default) comes from the PO's article (.dd-art) on the live site.
-   Direction B ("Editorial") overrides them on pages that contain the .dir-b marker (spec 003, Part 1). */
+/* Design tokens — direction "Editorial", picked by the PO on 2026-10-06 (spec 003). See docs/PRODUCT.md. */
 :root {
-  --accent: #236581;
-  --accent-2: #42adec;
-  --tint: #e8f4fc;
-  --line: #e2e8ec;
-  --muted: #56636c;
-  --text: #1d1d26;
-  --bg: #ffffff;
+  --accent: #1f5c45;
+  --accent-dark: #17463a;
+  --tint: #ece8de;
+  --line: #d6d0c2;
+  --muted: #595d56;
+  --text: #1b1e1c;
+  --bg: #f7f5f0;
 
-  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-heading: var(--font);
+  --font: var(--font-sans), system-ui, sans-serif;
+  --font-heading: var(--font-serif), Georgia, serif;
   --weight-regular: 400;
-  --weight-bold: 700;
+  --weight-bold: 600;
 
   --body-size: 18px;
   --body-line: 1.7;
@@ -23,22 +22,6 @@
   --page-width: 1120px;
   --gutter: 20px;
   --heading-space: 56px;
-  --radius: 14px;
-}
-
-body:has(.dir-b) {
-  --accent: #1f5c45;
-  --accent-2: #1f5c45;
-  --tint: #ece8de;
-  --line: #d6d0c2;
-  --muted: #595d56;
-  --text: #1b1e1c;
-  --bg: #f7f5f0;
-
-  --font: var(--font-sans-b), system-ui, sans-serif;
-  --font-heading: var(--font-serif-b), Georgia, serif;
-  --weight-bold: 600;
-  --radius: 0;
 }
 
 *,
@@ -81,7 +64,7 @@ a {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid var(--accent-2);
+  outline: 3px solid var(--accent);
   outline-offset: 2px;
 }
 

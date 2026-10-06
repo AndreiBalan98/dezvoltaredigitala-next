@@ -67,6 +67,7 @@ Two parts, with a PO decision between them.
 | `app/stil-a/page.tsx`, `app/stil-b/page.tsx` | new, then deleted | temporary preview pages |
 | `app/[...path]/page.tsx` | changed | renders the real article / calculator for those two paths; placeholder for the rest |
 | `lib/calculator.ts` | new | live calculator logic, unchanged |
+| `components/RouteHistory.tsx` (+ `app/layout.tsx`) | new | remembers in-app visits so the calculator's back link works after in-app navigation (added after the spec review) |
 | `components/BatteryCalculator.tsx` (+ `.module.css`) | new | calculator UI |
 | `tests/calculator.test.mjs` | new | 5 fixed cases + parity with the live script |
 | `tests/pages-text.test.mjs` | new | every sentence of the old article/calculator text is on the built page |
@@ -114,6 +115,17 @@ punctajul", fills case 1, and sees 57,5 / 100 — the same as the live site.
   not a second accent.
 - Screenshots are taken by Claude with headless Chrome and not committed (they go in the look-check
   message).
+- **Part 1 outcome:** PO picked **B "Editorial"** (2026-10-06: "b is way better"). Direction A's CSS and
+  the preview pages were deleted; B's tokens became the defaults.
+- Calculator port: besides types, `var` became `const`/`let` (lint rule); the parity test runs 700
+  input combinations (not ~300) plus 22 number-parsing cases against the live script's code.
+- Calculator page shows the WordPress page title "Calculator punctaj baterii" as its heading (the old
+  theme showed it above the calculator).
+- Small markup fixes with no visible behaviour change: the condition and data cards are
+  `fieldset`/`legend` (screen readers announce the group); the divider inside the result list is a
+  border, not a `div` (a `div` there is invalid HTML); the sticky score bar's button is out of the Tab
+  order because the bar is `aria-hidden` (the result itself is reachable by keyboard); the score bar
+  no longer animates its width (no-animation rule).
 
 ## Risks
 - Two directions in one evening means each is a strong sketch, not a polished system; polish goes

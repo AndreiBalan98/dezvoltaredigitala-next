@@ -9,7 +9,7 @@ export function Lead({ children }: Children) {
   return <p className={styles.lead}>{children}</p>;
 }
 
-/** A numbered section heading (numbers are shown only in direction B). */
+/** A section with a numbered heading (01, 02 …). */
 export function Section({ title, children }: { title: string } & Children) {
   return (
     <section className={styles.section}>

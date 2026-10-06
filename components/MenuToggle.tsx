@@ -1,11 +1,20 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./SiteHeader.module.css";
 
 // On phones the main menu folds behind a "Meniu" button; on wider screens the button is hidden.
 export default function MenuToggle({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+
+  // Close the menu after a link in it opened another page (the header stays mounted across pages).
+  const pathname = usePathname();
+  const [menuPath, setMenuPath] = useState(pathname);
+  if (pathname !== menuPath) {
+    setMenuPath(pathname);
+    setOpen(false);
+  }
 
   useEffect(() => {
     if (!open) return;

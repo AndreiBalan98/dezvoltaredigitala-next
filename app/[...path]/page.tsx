@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ArticleLayout from "@/components/article/ArticleLayout";
+import FinantareStocareEnergie from "@/components/articles/FinantareStocareEnergie";
+import BatteryCalculator from "@/components/BatteryCalculator";
 import { allEntries, findEntry, toPath, toSegments } from "@/lib/content";
 
 // Only the exported WordPress URLs exist; anything else is a 404.
@@ -18,11 +21,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return entry ? { title: entry.title } : {};
 }
 
-// Placeholder until M2/M3 build the real templates.
+// Article bodies rebuilt so far; every other post keeps the placeholder until M3.
+const ARTICLES: Record<string, () => React.ReactNode> = {
+  "/finantare-sisteme-stocare-energie/": FinantareStocareEnergie,
+};
+
 export default async function Page({ params }: Props) {
   const entry = findEntry(toPath((await params).path));
   if (!entry) notFound();
 
+  if (entry.path === "/calculator-baterii/") return <BatteryCalculator />;
+
+  const Body = ARTICLES[entry.path];
+  if (Body) {
+    return (
+      <ArticleLayout entry={entry}>
+        <Body />
+      </ArticleLayout>
+    );
+  }
+
+  // Placeholder until M3 builds the remaining templates.
   return (
     <article className="reading">
       <h1>{entry.title}</h1>

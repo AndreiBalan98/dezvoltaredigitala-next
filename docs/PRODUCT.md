@@ -59,16 +59,18 @@ permanently redirect (308) to the page that now holds its content — never 404.
 - NeoBot, pages not listed above
 
 ## Design rules — "professional, clean, not AI slop"
-**Style direction is chosen by the PO at M2** from two directions Claude builds on the same page
-(PO, 6 Oct 2026: "fresh look, I choose"). The colours and blocks below are the starting reference
-from the PO's article; the chosen direction replaces them. The **Forbidden** list and the last two
-lines (language/numbers, 375px + keyboard) apply to every direction.
-- **Colours:** accent `#236581`, accent-2 `#42adec`, tint `#e8f4fc`, line `#e2e8ec`,
-  muted `#56636c`, text `#1d1d26`, white background. One accent. No gradients.
-- **Type:** one font family, two weights. Body 18px / 1.7 (17px on phones). Reading column 760px.
-  Lead paragraph 20px. Headings with generous space above (56px).
-- **Blocks:** fact cards (1px line border, 14px radius, no shadow), one tint "action" block per page,
-  icon rows with a 44px tinted square, a quiet "Ai nevoie de ajutor?" box, small print in muted grey.
+**Direction "Editorial"** — picked by the PO on 6 Oct 2026 from two directions built on the same
+article (spec 003; PO: "b is way better"). Sober, print-like: rules instead of boxes.
+- **Colours:** paper background `#f7f5f0`, ink text `#1b1e1c`, one accent deep green `#1f5c45`
+  (hover `#17463a`), tint `#ece8de`, line `#d6d0c2`, muted `#595d56`. No gradients. Red/amber only as
+  status colours in forms.
+- **Type:** Source Serif 4 (600) for headings and large figures, Source Sans 3 (400/600) for text —
+  self-hosted via `next/font`. Body 18px / 1.7 (17px on phones). Reading column 760px. Lead 22px.
+  Headings with generous space above (56px). Small labels: 13px uppercase, letter-spacing 0.08em.
+- **Blocks:** facts with a 2px ink rule on top and a serif title (no box), numbered sections (01, 02…),
+  one tint "action" block per page with a 4px accent rule on the left, large serif point figures,
+  icon rows separated by thin rules with a 44px outlined square, "Ai nevoie de ajutor?" under a 2px
+  ink rule, small print in muted grey. Square corners. Wide featured image (21:9; 4:3 on phones).
 - **Forbidden:** gradients, glassmorphism, drop shadows on cards, emoji in UI, fade/slide-in
   animations, a hero photo of a person pointing, grids of six icons-in-circles, phrases like
   "soluții inovatoare" / "potențial nelimitat", dark mode for the demo.
