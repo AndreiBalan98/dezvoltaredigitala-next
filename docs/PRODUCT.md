@@ -23,8 +23,10 @@ their existing text. M0 proves the export with counts.
 dezvoltaredigitala.ro (C&A Connect S.R.L., Botoșani) sells EU-funding consultancy and digitalisation
 services to small businesses and individuals in the Nord-Est region. The current WordPress site looks
 dated and inconsistent: page-builder layouts, stock photos, emoji-heavy posts, two different phone
-numbers. The newest article (*Finanțare pentru sisteme de stocare a energiei*, 6 Oct 2026) and its
-calculator are clean and are **the design reference for the whole new site.**
+numbers. **PO direction (6 Oct 2026): a complete remake** — keep the information and images, new
+cleaner, professional, modern look ("not far from now, not AI slop"). Page structure and layouts may
+change freely. The newest article (*Finanțare pentru sisteme de stocare a energiei*) is the clean
+starting point, not a template to copy.
 
 ## Users
 Primary: owners of micro-enterprises/SMEs and prosumers in Nord-Est who saw a funding call on
@@ -34,10 +36,12 @@ Facebook or Google. Secondary: businesses wanting a website or digitalisation.
 Visitor lands on a funding article → understands in 30 seconds whether it applies to them →
 uses the calculator or calls / emails.
 
-## MVP scope — every old URL keeps working, same path
+## MVP scope — every old URL keeps working
+The site structure may change (PO, 6 Oct 2026). Every old URL below must either open its page or
+permanently redirect (308) to the page that now holds its content — never 404.
 - `/` home
 - `/finantari-nerambursabile/` — list of all funding articles, newest first
-- every post at `/<slug>/` (10 posts; e.g. `/finantare-sisteme-stocare-energie/`)
+- every post at `/<slug>/` (12 posts; e.g. `/finantare-sisteme-stocare-energie/`)
 - `/calculator-baterii/` — the battery score calculator, logic ported unchanged
 - `/servicii/creare-website/`, `/servicii/digitalizare-si-automatizare/`,
   `/servicii/consultanta-solutii-it-si-studii-de-fezabilitate/`,
@@ -55,7 +59,10 @@ uses the calculator or calls / emails.
 - NeoBot, pages not listed above
 
 ## Design rules — "professional, clean, not AI slop"
-Taken from the PO's own article (`.dd-art` CSS on the live site):
+**Style direction is chosen by the PO at M2** from two directions Claude builds on the same page
+(PO, 6 Oct 2026: "fresh look, I choose"). The colours and blocks below are the starting reference
+from the PO's article; the chosen direction replaces them. The **Forbidden** list and the last two
+lines (language/numbers, 375px + keyboard) apply to every direction.
 - **Colours:** accent `#236581`, accent-2 `#42adec`, tint `#e8f4fc`, line `#e2e8ec`,
   muted `#56636c`, text `#1d1d26`, white background. One accent. No gradients.
 - **Type:** one font family, two weights. Body 18px / 1.7 (17px on phones). Reading column 760px.
@@ -69,7 +76,8 @@ Taken from the PO's own article (`.dd-art` CSS on the live site):
 - Works at 375px wide. Every interactive element reachable by keyboard.
 
 ## Success criteria (demo)
-- every URL in the MVP list renders on the Vercel preview, none 404
+- every URL in the MVP list renders (or redirects) on the Vercel URL, none 404
+- the PO approved the look at every milestone (M2, M3, M4)
 - the calculator gives the same result as the live one for 5 fixed test inputs
 - Lighthouse on the article page: Performance ≥ 90, Accessibility ≥ 95 (mobile)
 - the PO, looking on his phone and laptop, says it looks professional

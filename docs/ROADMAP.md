@@ -3,48 +3,57 @@
 Status: `todo` → `spec` → `building` → `review` → `done`, plus `cancelled`. One milestone at a time.
 Direction changes are edits to this file in a `docs:` commit — never decided in chat only.
 Level I0 until the demo: Claude commits and pushes to `main`; Vercel deploys each push.
-**One look-check by the PO after M2** (design is taste — the only thing a machine can't check).
+**PO look-check at the end of every milestone from M2 on** (PO, 6 Oct 2026: "consult me at every
+milestone"): Claude posts the Vercel URL + screenshots; the PO approves or says what to change.
+Nothing in the next milestone starts before that yes. Goal: all pages remade by the demo (7 Oct) —
+PO chose this knowing it leaves fewer approval rounds; most-visited pages go first.
 
 ## M0 — Export everything · status: done · ~20 min
 **Outcome:** `scripts/export-wp.mjs` pulls all posts, pages and media from
 `https://dezvoltaredigitala.ro/wp-json/wp/v2/` into `content/` and `public/media/`.
 **Definition of Done:**
-- [ ] post and page counts equal the API's `X-WP-Total` headers (printed by the script)
-- [ ] every image referenced by any post or page is downloaded; script lists any that failed
-- [ ] `content/inventory.md`-style summary is printed to the terminal (slug, title, date, type) — not a new doc
-- [ ] if content is missing or broken: stop and tell the PO before M1
+- [x] post and page counts equal the API's `X-WP-Total` headers (printed by the script)
+- [x] every image referenced by any post or page is downloaded; script lists any that failed
+- [x] `content/inventory.md`-style summary is printed to the terminal (slug, title, date, type) — not a new doc
+- [x] if content is missing or broken: stop and tell the PO before M1
 
 ## M1 — Setup · status: review · ~45 min
 **Outcome:** empty Next.js site with header, footer and design tokens, live on Vercel.
 **Definition of Done:**
-- [ ] `.gitignore` committed before `npm install`
-- [ ] `.claude/dod-commands`: `npm run lint`, `npm run build`, `npm run check:routes`
+- [x] `.gitignore` committed before `npm install`
+- [x] `.claude/dod-commands`: `npm run lint`, `npm run build`, `npm run check:routes`
       (every exported slug has a page) and `npm test` — each proven able to fail once
 - [ ] **HUMAN TASK:** PO imports the GitHub repo on vercel.com (3 clicks, written in STATE.md); preview URL works
 **Out of scope:** any page content.
 
-## M2 — The reference: article template + calculator · status: todo · ~1.5 h
-**Outcome:** `/finantare-sisteme-stocare-energie/` and `/calculator-baterii/` look like the PO's
-article, made of reusable components (fact card, action block, score split, icon row, help box).
+## M2 — Style direction + the reference pages · status: todo · ~2 h
+**Outcome:** (a) two distinct style directions applied to the same article page, PO picks one;
+(b) `/finantare-sisteme-stocare-energie/` and `/calculator-baterii/` built in the chosen style from
+reusable components, with a new header and footer.
 **Definition of Done:**
+- [ ] **PO PICKS A DIRECTION** from two variants (screenshots at 375px and 1280px); the choice replaces
+      the colour/type lines in PRODUCT.md
 - [ ] calculator logic ported unchanged into its own module, with tests: 5 fixed inputs give the
       same score / AFM / own-contribution as the live calculator
 - [ ] both pages pass at 375px and 1280px (screenshots in the PR/commit evidence)
 - [ ] **PO LOOK-CHECK** on the Vercel URL: approve the look, or say what to change. Nothing else starts before this.
 
 ## M3 — All pages · status: todo · ~2 h
-**Outcome:** every URL in PRODUCT.md's MVP list renders with the approved look.
+**Outcome:** every URL in PRODUCT.md's MVP list renders with the approved look; structure may change
+(e.g. merged service pages), old URLs redirect where a page moved.
 **Definition of Done:**
 - [ ] older articles: page-builder HTML cleaned into the article template (text and facts kept, emoji
       and builder leftovers removed); the list of cuts goes into STATE.md for the PO
 - [ ] home, `/finantari-nerambursabile/`, 4 service pages, contact, legal pages, 404
-- [ ] `npm run check:routes` green: no old URL missing
+- [ ] `npm run check:routes` green: every old URL is built or has a redirect
+- [ ] **PO LOOK-CHECK** on the Vercel URL (home, a service page, the funding list at minimum)
 
 ## M4 — Demo ready · status: todo · ~45 min
 **Outcome:** the PO can present from his phone and laptop without surprises.
 **Definition of Done:**
 - [ ] Lighthouse mobile on the article page: Performance ≥ 90, Accessibility ≥ 95 (numbers in STATE.md)
 - [ ] link check: no broken internal links
+- [ ] **PO LOOK-CHECK** on phone and laptop: final yes for the demo
 - [ ] STATE.md has a 5-step demo script (which pages to show, in which order) and the open questions
 
 ## After the demo (not now)
