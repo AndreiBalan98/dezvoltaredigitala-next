@@ -35,6 +35,7 @@ placeholder page for every old URL, deployed on Vercel from GitHub `main`.
 | `lib/content.ts` | new | route list from `content/` |
 | `scripts/check-routes.mjs`, `tests/*.test.mjs` | new | checks |
 | `.claude/dod-commands` | changed | lint, build, check:routes, test |
+| `vercel.json` | new | pins the framework to Next.js (the project was imported before the code was pushed, so Vercel saved "Other" and served only `public/`) |
 
 ## Touches existing code
 Only `.claude/dod-commands`. `scripts/export-wp.mjs` and `content/` are read, not changed.
