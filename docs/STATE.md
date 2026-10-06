@@ -49,7 +49,7 @@ PO approves spec 004 (M3: every remaining page, older articles cleaned, cuts lis
 - 12 posts exist, not 10: `/test-2/` and `/bizz-club-botosani/` are also published. All keep their URLs.
 - Home page and footer are WordPress theme parts (not in the API); the exporter takes them from the live HTML.
 - `/servicii/` has no text of its own on the old site (only a title).
-- Header: Acasă · Servicii · Finanțări nerambursabile · Contact + button "Eligibilitate preliminară" → `/calculator-baterii/`.
+- Header: Acasă · Servicii · Finanțări nerambursabile · Contact + button "Eligibilitate preliminară" → `/contact/` (PO 2026-10-06; it was wrongly → calculator. Old site: pop-up application form — rebuild after the demo with the form service).
 - Footer ISO links open the certificate images (ISO/IEC 27001 and ISO/IEC 20000-1 — standard names
   and short labels read from the certificate scans; the old site only said "Suntem certificați ISO"). The certificates
   shown on the old site say "data expirării 18.12.2024", with yearly reviews stamped up to Dec 2025 —

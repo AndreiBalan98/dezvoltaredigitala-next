@@ -23,7 +23,7 @@ export default function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href="/calculator-baterii/" className={styles.cta}>
+          <Link href="/contact/" className={styles.cta}>
             Eligibilitate preliminară
           </Link>
         </MenuToggle>

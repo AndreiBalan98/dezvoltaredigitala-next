@@ -82,6 +82,8 @@ No URL changes. No new dependency.
   (the leftovers test fails on a page with almost no text).
 - `tests/pages-text.test.mjs` grows from 2 pages to all content pages.
 - The reference article and calculator from M2 are not changed.
+- Header button "Eligibilitate preliminară" now goes to `/contact/` instead of the calculator
+  (PO decision 2026-10-06: on the old site it opens an application form, not the calculator).
 
 ## Test plan
 | Case | Type | Expected |

@@ -109,6 +109,6 @@ article (spec 003; PO: "b is way better"). Sober, print-like: rules instead of b
 - OPEN QUESTION: 2025 funding calls (Start-Up Nation 2025, VInnovate 2025…) may be closed.
   *Default: keep them, show the publish date clearly, make no claim about status.*
 - OPEN QUESTION: two posts have bad slugs (`/877-2/`, `/test-3/`). *Default: keep the URLs for the demo.*
-- OPEN QUESTION: the header button "Eligibilitate preliminară" — where should it go? *Default: calculator.*
+- DECIDED (PO, 6 Oct 2026): the header button "Eligibilitate preliminară" goes to `/contact/` for the demo. On the old site it opens an application form (company, CUI, funding programme, balance sheet + Certificat Constatator upload); the real form comes with the form-service decision after the demo.
 - OPEN QUESTION (after demo): production hosting (Vercel Pro ~$20/month for commercial use, or other),
   contact form service, domain switch date.
