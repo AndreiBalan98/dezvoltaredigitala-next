@@ -72,6 +72,10 @@ End-to-end check: Lighthouse numbers in STATE.md meet the bar; PO says yes on ph
 - "Article page" = `/finantare-sisteme-stocare-energie/` (the reference article from M2).
 - Median of 3 runs counts as the score.
 - The demo script follows PRODUCT.md's core loop; the PO can reorder it.
+- Used in the end (PO, 2026-10-06): PageSpeed Insights refused every call (keyless daily quota
+  exhausted), so Lighthouse 12.8.2 ran on this machine via `npx` against the live Vercel URL.
+- The one accessibility finding (in-text links distinguished by colour only) is not fixed: the
+  article page is above the bar, and the spec fixes only what keeps it under.
 
 ## Risks
 - PageSpeed Insights without a key is rate-limited; if it refuses, I fall back to running Lighthouse

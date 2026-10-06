@@ -48,13 +48,13 @@ reusable components, with a new header and footer.
 - [x] `npm run check:routes` green: every old URL is built or has a redirect
 - [x] **PO LOOK-CHECK** on the Vercel URL (home, a service page, the funding list at minimum) (PO: "go on, its ok", 2026-10-06)
 
-## M4 — Demo ready · status: building · ~45 min
+## M4 — Demo ready · status: review · ~45 min
 **Outcome:** the PO can present from his phone and laptop without surprises.
 **Definition of Done:**
-- [ ] Lighthouse mobile on the article page: Performance ≥ 90, Accessibility ≥ 95 (numbers in STATE.md)
-- [ ] link check: no broken internal links
+- [x] Lighthouse mobile on the article page: Performance ≥ 90, Accessibility ≥ 95 (numbers in STATE.md) (92 / 96)
+- [x] link check: no broken internal links (`npm run check:links`, in the DoD)
 - [ ] **PO LOOK-CHECK** on phone and laptop: final yes for the demo
-- [ ] STATE.md has a 5-step demo script (which pages to show, in which order) and the open questions
+- [x] STATE.md has a 5-step demo script (which pages to show, in which order) and the open questions
 
 ## After the demo (not now)
 Promote I0 → I1 (branches + PRs), contact form, production hosting decision, domain switch with the

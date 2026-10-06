@@ -38,7 +38,7 @@ function resolves(link) {
 }
 
 const unescape = (s) => s.replaceAll("&amp;", "&");
-const ATTR = /\s(?:href|src|srcSet|srcset)="([^"]*)"/g;
+const ATTR = /\s(?:href|src|srcSet|srcset|imageSrcSet|imagesrcset)="([^"]*)"/g;
 
 let checked = 0;
 const broken = [];

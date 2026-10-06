@@ -3,7 +3,7 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M4 — Demo ready (status: building)
+**Current milestone:** M4 — Demo ready (status: review — waiting for the PO's final phone/laptop check)
 **Current spec:** docs/specs/005-demo-ready.md (approved 2026-10-06)
 **Branch:** main
 
@@ -20,6 +20,38 @@
   - Checks: `tests/pages-text.test.mjs` (every old sentence kept or listed), `tests/leftovers.test.mjs`
     (no builder classes, emoji, Facebook images, old phone, old-site links, removed images; real
     content on every page), funding-list order. 58 tests + 23/23 routes.
+- M4 built: `npm run check:links` (DoD) — 1396 internal links on 24 built pages (incl. preload image links), 0 broken; proven red
+  with a link to `/nu-exista/` (1 broken) and a missing logo file (73 broken).
+  **Lighthouse 12.8.2, mobile, live Vercel URL, 2026-10-06** (run locally with `npx lighthouse@12` — the
+  keyless PageSpeed Insights quota was exhausted; PO approved the fallback):
+  | Page | Performance | Accessibility |
+  |---|---|---|
+  | `/finantare-sisteme-stocare-energie/` (3 runs: 91, 93, 92 → median) | **92** | **96** |
+  | `/` | 97 | 96 |
+  | `/finantari-nerambursabile/` | 92 | 96 |
+  | `/calculator-baterii/` | 100 | 96 |
+  | `/contact/` | 96 | 96 |
+  The only accessibility finding on every page: links inside paragraphs differ from text by colour
+  only (no underline). Not fixed — above the bar; easy follow-up after the demo.
+
+## Demo script (7 Oct) — 5 steps
+1. **Laptop, home `/`.** The new look: clean intro, the 3 newest funding articles (they update by
+   themselves), the 4 services, ISO certificates and portfolio at the bottom.
+2. **Click the newest article** (*Finanțare pentru sisteme de stocare a energiei*). Show that in
+   30 seconds you see who it is for, how much money, and the points — that is the site's job.
+3. **"Calculează-ți punctajul" link in the article.** Enter one example; show the score and the AFM / own
+   contribution. Same results as the old calculator (tested on 5 fixed inputs).
+4. **Menu → "Finanțări nerambursabile".** All 12 articles, newest first; open an older one
+   (e.g. Start-Up Nation 2025) — same text as before, no emoji or page-builder clutter.
+5. **Phone, same article.** Scroll it, then tap the phone number — it starts a call. Mention every
+   old address still works, so Google links and Facebook posts keep working after the switch.
+
+## Open questions to raise at the demo
+- Phone number: the site shows **+40 749 589 848** everywhere (old pages had 0770 102 495). Confirm.
+- ISO certificates in the footer say "data expirării 18.12.2024" (reviews stamped to Dec 2025) — still valid?
+- 2025 funding calls (Start-Up Nation 2025, VInnovate 2025…) may be closed; shown with their date, no status claim.
+- After the demo: production hosting (Vercel Hobby is non-commercial; Pro ~$20/month), contact form
+  service, the "Eligibilitate preliminară" application form, domain switch date, `/877-2/`-style slugs.
 
 ## What was cut or changed (for the PO)
 Full list with reasons: `tests/text-changes.mjs` (text) and `REMOVED_IMAGES` in the same file.
@@ -36,8 +68,8 @@ Full list with reasons: `tests/text-changes.mjs` (text) and `REMOVED_IMAGES` in 
 - **Titles:** "Economia circulară", "Start-Up Nation 2025". Non-funding posts are labelled "Noutăți".
 
 ## Next step
-PO approves spec 005 (M4): link check as a DoD command, Lighthouse via PageSpeed Insights on the
-article page (Performance ≥ 90, Accessibility ≥ 95), 5-step demo script, final phone/laptop look-check.
+PO's final look-check (below). After a yes: M4 done → the demo. After the demo: promote I0 → I1 and
+decide the open questions above.
 
 ## Why the current approach
 - Content is exported once into the repo, so the new site never calls the old server.
@@ -52,13 +84,19 @@ article page (Performance ≥ 90, Accessibility ≥ 95), 5-step demo script, fin
 - nothing
 
 ## Blocked on the human
-- **Approve spec 005** (`docs/specs/005-demo-ready.md`) and the PageSpeed Insights question in it.
+- **FINAL PO LOOK-CHECK (M4).** Takes ~10 minutes.
+  1. On your **phone**, open https://dezvoltaredigitala-next.vercel.app/ and walk through the 5 demo
+     steps above (step 5 is the phone one — tap the number, then hang up).
+  2. On your **laptop**, do steps 1–4 in the browser.
+  3. Read the "Open questions to raise at the demo" list; note anything you want changed first.
+  Done looks like: you answer "yes for the demo", or name what to change (I fix it tonight).
 
 ## Decisions made since last review
 - PO: fix diacritics and obvious typos in old texts, each non-diacritic fix listed (2026-10-06).
 - PO: header button "Eligibilitate preliminară" → `/contact/` for the demo (2026-10-06). On the old site it
   opens a pop-up application form (company, CUI, funding programme, balance sheet + Certificat
   Constatator upload) — rebuild after the demo together with the form-service decision.
+- PO: Lighthouse measured locally with `npx lighthouse@12` after the PageSpeed Insights quota ran out (2026-10-06).
 - PO picked direction B "Editorial" (2026-10-06). Fonts Source Serif 4 + Source Sans 3 via `next/font`.
 - Kept photos: C&A Connect building, event photos, server close-up (no people), portfolio
   screenshots, ISO certificates, article images.
@@ -69,6 +107,8 @@ article page (Performance ≥ 90, Accessibility ≥ 95), 5-step demo script, fin
 - Tests use Node's built-in runner (no test library added).
 
 ## Tried and rejected — don't retry
+- PageSpeed Insights API without a key: "Quota exceeded … Queries per day" (the keyless quota is shared
+  by everyone). Use `npx -y lighthouse@12 <url> --form-factor=mobile --chrome-flags="--headless=new"`.
 - Importing on Vercel before the code was pushed: Vercel saved framework "Other" and served only
   `public/` (every page 404, images 200). Fixed by `vercel.json` `"framework": "nextjs"` — keep that file.
 - Paginating the WP API by "stop when a page is short" — a missing item crashed with HTTP 400 instead
