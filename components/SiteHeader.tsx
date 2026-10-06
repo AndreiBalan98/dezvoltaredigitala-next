@@ -3,8 +3,9 @@ import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 
 const NAV = [
-  { href: "/finantari-nerambursabile/", label: "Finanțări nerambursabile" },
+  { href: "/", label: "Acasă" },
   { href: "/servicii/", label: "Servicii" },
+  { href: "/finantari-nerambursabile/", label: "Finanțări nerambursabile" },
   { href: "/contact/", label: "Contact" },
 ];
 
