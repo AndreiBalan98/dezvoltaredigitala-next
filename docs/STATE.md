@@ -3,8 +3,8 @@
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
 **Last updated:** 2026-10-06
-**Current milestone:** M4 — Demo ready (status: spec — waiting for PO approval)
-**Current spec:** docs/specs/005-demo-ready.md (draft)
+**Current milestone:** M4 — Demo ready (status: building)
+**Current spec:** docs/specs/005-demo-ready.md (approved 2026-10-06)
 **Branch:** main
 
 ## Where we are
