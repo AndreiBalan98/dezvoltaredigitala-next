@@ -48,6 +48,8 @@ M4 — Demo ready (built; its final look-check is folded into the same check)
     Inter is not preloaded, so it is only downloaded when a new style is active.
   - Check: `tests/styles.test.mjs` (switcher, head-script cases, AA contrast of all 3 styles) — proven
     red by making Luminos grey too light (2.32:1 → 2 failures). 89 tests.
+  - Lighthouse after M4b (live, mobile, Editorial, 3 runs: 91, 93, 91): **Performance 91, Accessibility 96**
+    — still above the bar (was 92 / 96; the difference is run-to-run noise).
 
 ## Demo script (7 Oct) — 5 steps
 1. **Laptop, home `/`.** The new look: clean intro, the 3 newest funding articles (they update by
