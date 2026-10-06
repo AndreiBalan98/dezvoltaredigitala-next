@@ -5,7 +5,7 @@ Direction changes are edits to this file in a `docs:` commit — never decided i
 Level I0 until the demo: Claude commits and pushes to `main`; Vercel deploys each push.
 **One look-check by the PO after M2** (design is taste — the only thing a machine can't check).
 
-## M0 — Export everything · status: todo · ~20 min
+## M0 — Export everything · status: done · ~20 min
 **Outcome:** `scripts/export-wp.mjs` pulls all posts, pages and media from
 `https://dezvoltaredigitala.ro/wp-json/wp/v2/` into `content/` and `public/media/`.
 **Definition of Done:**
@@ -14,7 +14,7 @@ Level I0 until the demo: Claude commits and pushes to `main`; Vercel deploys eac
 - [ ] `content/inventory.md`-style summary is printed to the terminal (slug, title, date, type) — not a new doc
 - [ ] if content is missing or broken: stop and tell the PO before M1
 
-## M1 — Setup · status: todo · ~45 min
+## M1 — Setup · status: review · ~45 min
 **Outcome:** empty Next.js site with header, footer and design tokens, live on Vercel.
 **Definition of Done:**
 - [ ] `.gitignore` committed before `npm install`
