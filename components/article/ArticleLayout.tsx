@@ -4,14 +4,22 @@ import styles from "./article.module.css";
 
 const dateFormat = new Intl.DateTimeFormat("ro-RO", { day: "numeric", month: "long", year: "numeric" });
 
-// Shared frame for every funding article: kicker with the publish date, title, featured image, body.
-export default function ArticleLayout({ entry, children }: { entry: Entry; children: React.ReactNode }) {
+// Shared frame for every article: kicker (section label + publish date), title, featured image, body.
+export default function ArticleLayout({
+  entry,
+  label = "Finanțări nerambursabile",
+  children,
+}: {
+  entry: Entry;
+  label?: string;
+  children: React.ReactNode;
+}) {
   const image = entry.featuredImage;
   return (
     <article className={styles.article}>
       <header className={styles.header}>
         <p className={styles.kicker}>
-          Finanțări nerambursabile · <time dateTime={entry.date}>{dateFormat.format(new Date(entry.date))}</time>
+          {label} · <time dateTime={entry.date}>{dateFormat.format(new Date(entry.date))}</time>
         </p>
         <h1 className={styles.title}>{entry.title}</h1>
       </header>

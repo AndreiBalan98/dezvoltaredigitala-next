@@ -42,8 +42,17 @@
 }
 
 /* Zero-specificity reset, so each block below sets its own spacing. */
-:where(.body) :where(p, ul, h2) {
+:where(.body) :where(p, ul, ol, h2, h3) {
   margin: 0;
+}
+
+.body h3 {
+  font-size: 22px;
+}
+
+/* Default gap between top-level blocks; blocks below set their own (larger) spacing. */
+.body > * + * {
+  margin-top: 16px;
 }
 
 .body h2 {
@@ -263,6 +272,150 @@
   height: 20px;
 }
 
+/* Pages without a featured image need space between title and body */
+.pageHeader {
+  margin-bottom: 40px;
+}
+
+/* Price packages */
+.prices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  border-top: 2px solid var(--text);
+}
+
+.price h3 {
+  font-size: 22px;
+}
+
+.priceFrom {
+  margin: 4px 0 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.priceFrom strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.price .dash {
+  font-size: 16px;
+  flex: 1;
+}
+
+.priceLink {
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+}
+
+.priceLink:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Running text */
+.prose > * + * {
+  margin-top: 16px;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+.prose a,
+.dash a,
+.steps a {
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+
+/* Numbered steps */
+.steps {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+
+.steps li {
+  position: relative;
+  padding: 14px 0 14px 56px;
+  border-top: 1px solid var(--line);
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 8px;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+.steps strong {
+  display: block;
+}
+
+/* Images inside the text */
+.inlineFigure {
+  margin: 32px 0 0;
+}
+
+.inlineFigure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.narrow {
+  max-width: 380px;
+}
+
+.inlineFigure figcaption {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .fine {
   margin-top: 28px;
   font-size: 14px;
@@ -305,5 +458,10 @@
   .iconRow {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .gallery,
+  .prices {
+    grid-template-columns: 1fr;
   }
 }

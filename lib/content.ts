@@ -10,6 +10,8 @@ export type Entry = {
   title: string;
   date: string;
   featuredImage?: { src: string; alt: string } | null;
+  /** The page's HTML as exported from WordPress. */
+  html: string;
 };
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
@@ -22,6 +24,11 @@ function readDir(dir: string): Entry[] {
 
 export function allEntries(): Entry[] {
   return [...readDir("pages"), ...readDir("posts")];
+}
+
+/** All posts, newest first. */
+export function posts(): Entry[] {
+  return readDir("posts").sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export function findEntry(urlPath: string): Entry | undefined {

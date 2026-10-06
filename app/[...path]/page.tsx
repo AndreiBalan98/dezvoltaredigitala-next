@@ -1,14 +1,37 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleLayout from "@/components/article/ArticleLayout";
-import FinantareStocareEnergie from "@/components/articles/FinantareStocareEnergie";
+import { ARTICLES } from "@/components/articles";
 import BatteryCalculator from "@/components/BatteryCalculator";
-import { allEntries, findEntry, toPath, toSegments } from "@/lib/content";
+import ConsultantaFonduri from "@/components/pages/ConsultantaFonduri";
+import ConsultantaIt from "@/components/pages/ConsultantaIt";
+import Contact from "@/components/pages/Contact";
+import CreareWebsite from "@/components/pages/CreareWebsite";
+import DigitalizareAutomatizare from "@/components/pages/DigitalizareAutomatizare";
+import FundingList from "@/components/pages/FundingList";
+import Legal from "@/components/pages/Legal";
+import ServicesIndex from "@/components/pages/ServicesIndex";
+import { allEntries, findEntry, toPath, toSegments, type Entry } from "@/lib/content";
 
 // Only the exported WordPress URLs exist; anything else is a 404.
 export const dynamicParams = false;
 
 type Props = { params: Promise<{ path: string[] }> };
+
+// Every page that is not an article. Each old URL must be here or in ARTICLES (tests/leftovers.test.mjs
+// fails on a page without content).
+const PAGES: Record<string, (props: { entry: Entry }) => React.ReactNode> = {
+  "/calculator-baterii/": BatteryCalculator,
+  "/finantari-nerambursabile/": FundingList,
+  "/servicii/": ServicesIndex,
+  "/servicii/consultanta-pentru-accesarea-fondurilor-nerambursabile/": ConsultantaFonduri,
+  "/servicii/consultanta-solutii-it-si-studii-de-fezabilitate/": ConsultantaIt,
+  "/servicii/digitalizare-si-automatizare/": DigitalizareAutomatizare,
+  "/servicii/creare-website/": CreareWebsite,
+  "/contact/": Contact,
+  "/politica-de-confidentialitate/": Legal,
+  "/termeni-si-conditii/": Legal,
+};
 
 export function generateStaticParams() {
   return allEntries()
@@ -18,41 +41,22 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const entry = findEntry(toPath((await params).path));
-  return entry ? { title: entry.title } : {};
+  if (!entry) return {};
+  return { title: ARTICLES[entry.path]?.title ?? entry.title };
 }
-
-// Article bodies rebuilt so far; every other post keeps the placeholder until M3.
-const ARTICLES: Record<string, () => React.ReactNode> = {
-  "/finantare-sisteme-stocare-energie/": FinantareStocareEnergie,
-};
 
 export default async function Page({ params }: Props) {
   const entry = findEntry(toPath((await params).path));
   if (!entry) notFound();
 
-  if (entry.path === "/calculator-baterii/") return <BatteryCalculator />;
+  const PageBody = PAGES[entry.path];
+  if (PageBody) return <PageBody entry={entry} />;
 
-  const Body = ARTICLES[entry.path];
-  if (Body) {
-    return (
-      <ArticleLayout entry={entry}>
-        <Body />
-      </ArticleLayout>
-    );
-  }
-
-  // Placeholder until M3 builds the remaining templates.
+  const article = ARTICLES[entry.path];
+  if (!article) notFound();
   return (
-    <article className="reading">
-      <h1>{entry.title}</h1>
-      {entry.type === "post" && (
-        <p className="muted">
-          Publicat la{" "}
-          <time dateTime={entry.date}>
-            {new Date(entry.date).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" })}
-          </time>
-        </p>
-      )}
-    </article>
+    <ArticleLayout entry={{ ...entry, title: article.title ?? entry.title }} label={article.label}>
+      <article.Body />
+    </ArticleLayout>
   );
 }

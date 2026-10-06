@@ -16,6 +16,9 @@ import {
   Section,
 } from "@/components/article/blocks";
 
+export const summary =
+  "Ai panouri fotovoltaice și ești prosumator? Poți solicita finanțare pentru achiziția și instalarea unui sistem de stocare a energiei electrice produse din surse regenerabile.";
+
 export default function FinantareStocareEnergie() {
   return (
     <>

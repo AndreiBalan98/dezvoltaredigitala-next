@@ -1,4 +1,5 @@
-// Building blocks for article bodies (spec 003). Each block matches one block of the PO's article.
+// Building blocks for article bodies (spec 003, extended in spec 004).
+import Image from "next/image";
 import Link from "next/link";
 import { MailIcon, PersonIcon, PhoneIcon, ShieldIcon } from "./icons";
 import styles from "./article.module.css";
@@ -42,13 +43,93 @@ export function ActionBlock({ title, children }: { title: string } & Children) {
   );
 }
 
-export function DashList({ items }: { items: string[] }) {
+export function DashList({ items }: { items: React.ReactNode[] }) {
   return (
     <ul className={styles.dash}>
-      {items.map((item) => (
-        <li key={item}>{item}</li>
+      {items.map((item, i) => (
+        <li key={i}>{item}</li>
       ))}
     </ul>
+  );
+}
+
+/** Plain running text: paragraphs, lists and links with the article's spacing. */
+export function Prose({ children }: Children) {
+  return <div className={styles.prose}>{children}</div>;
+}
+
+/** Numbered steps (1, 2, 3 …), each with a short bold title. */
+export function Steps({ items }: { items: { title: string; text: React.ReactNode }[] }) {
+  return (
+    <ol className={styles.steps}>
+      {items.map((s) => (
+        <li key={s.title}>
+          <strong>{s.title}</strong>
+          {s.text}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+type Img = { src: string; width: number; height: number; alt: string };
+
+/** A package with its starting price, what it includes and a request button. */
+export function Price({ name, price, items }: { name: string; price: string; items: string[] }) {
+  return (
+    <section className={styles.price}>
+      <h3>{name}</h3>
+      <p className={styles.priceFrom}>
+        Începând de la <strong>{price}</strong>
+      </p>
+      <DashList items={items} />
+      <Link href="/contact/" className={styles.priceLink}>
+        Cere oferta
+      </Link>
+    </section>
+  );
+}
+
+export function PriceGrid({ children }: Children) {
+  return <div className={styles.prices}>{children}</div>;
+}
+
+/** The six service areas listed on every service page of the old site (no icons). */
+export function ServiceAreas() {
+  return (
+    <Section title="Servicii diversificate">
+      <FactGrid>
+        <Fact title="Website">Dezvoltare website-uri, e-commerce și software specializat</Fact>
+        <Fact title="Analiză tehnică">
+          Servicii de analiză pentru identificarea soluțiilor tehnice necesare digitalizării afacerii
+        </Fact>
+        <Fact title="CRM">CRM (Customer Relationship Management)</Fact>
+        <Fact title="Gestiune">Soluții pentru gestiune financiară, gestiunea furnizorilor, resurse umane, logistică</Fact>
+        <Fact title="IoT">Implementare tehnologii de tip IoT (Internet of Things), AI (Artificial Intelligence)</Fact>
+        <Fact title="Cloud">Servicii de tip Cloud Computing și securitate cibernetică</Fact>
+      </FactGrid>
+    </Section>
+  );
+}
+
+/** An image in the text; `narrow` keeps tall (portrait) photos at half width. */
+export function Figure({ src, width, height, alt, caption, narrow }: Img & { caption?: string; narrow?: boolean }) {
+  return (
+    <figure className={`${styles.inlineFigure} ${narrow ? styles.narrow : ""}`}>
+      <Image src={src} width={width} height={height} alt={alt} sizes="(max-width: 800px) 100vw, 760px" />
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
+/** A row of photos (2–3), e.g. from an event. */
+export function Gallery({ images }: { images: Img[] }) {
+  return (
+    <div className={styles.gallery}>
+      {images.map((img) => (
+        <Image key={img.src} src={img.src} width={img.width} height={img.height} alt={img.alt} sizes="(max-width: 640px) 100vw, 250px" />
+      ))}
+    </div>
   );
 }
 

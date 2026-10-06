@@ -20,8 +20,8 @@ letters or page-builder leftovers. The PO gets one list of everything that was c
 `/servicii/` → contact → legal pages → 404.
 
 **Older articles (10 posts).** Rewritten once as TSX bodies with the M2 block components — the same
-way as the reference article — plus a few new generic blocks: `Prose` paragraphs, `BulletList`,
-`Steps` (numbered), `Figure` (image + caption), `EventDetails` (date/place rows). Added to the
+way as the reference article — plus a few new generic blocks: `Prose` paragraphs, `Steps`
+(numbered), `Figure` (image + caption), `Gallery` (event photos); lists reuse `DashList`. Added to the
 `ARTICLES` map in `app/[...path]/page.tsx`. Every article ends with the standard `HelpBox`.
 Removed everywhere, automatically checked:
 - emoji and the Facebook emoji images (`static.xx.fbcdn.net` — loaded from Facebook's servers today);
@@ -66,8 +66,10 @@ the list.
 | File / interface | New / changed | What |
 |---|---|---|
 | `components/articles/*.tsx` | new | 10 article bodies |
-| `components/article/blocks.tsx`, `article.module.css` | changed | `Prose`, `BulletList`, `Steps`, `Figure`, `EventDetails` |
-| `components/pages/*.tsx` (+ CSS modules) | new | home, funding list, services index, 4 service pages, contact, legal |
+| `components/article/blocks.tsx`, `article.module.css` | changed | `Prose`, `Steps`, `Figure`, `Gallery`, `Price`/`PriceGrid`, `ServiceAreas`; `DashList` takes rich items |
+| `components/article/PageLayout.tsx` | new | frame for non-article pages (label + title, no date/photo) |
+| `components/articles/index.ts` | new | registry: URL → body, summary, kicker label, corrected title |
+| `components/pages/*.tsx` (+ `pages.module.css`) | new | home, post list, funding list, services index, 4 service pages, contact, legal |
 | `app/page.tsx`, `app/[...path]/page.tsx`, `app/not-found.tsx` | changed | real pages; the placeholder branch is deleted |
 | `lib/content.ts` | changed | `posts()` newest first, `excerpt` helper, legal HTML normaliser |
 | `tests/text-changes.mjs` | new | the cuts / changes list |
@@ -109,6 +111,13 @@ End-to-end check: PO look-check on the Vercel URL — home, a service page, the 
 - Older articles are hand-converted into TSX (like the reference article), not shown as cleaned HTML:
   page-builder markup is too irregular to clean automatically to the M2 standard.
 - No page merges or redirects in M3 (keeps the risk low the day before the demo).
+- Non-funding posts (EduWebLab, internship, two BIZZ CLUB events) are labelled "Noutăți" instead of
+  "Finanțări nerambursabile" above the title. Titles fixed: "Economia circulară", "Start-Up Nation 2025".
+- Links to people's personal Facebook/LinkedIn profiles (with tracking codes) became plain names.
+- Kept photos: the C&A Connect building, event photos, the server close-up (no people), portfolio
+  screenshots, certificates. Removed: stock photos with people, decorative SVG icons, the logo strip
+  under the portfolio (it repeated the portfolio).
+- Leftovers check: a page needs ≥ 25 words of content (contact, the shortest, has ~40).
 - 2025 funding calls stay, with the date clearly shown and no claim about status (PRODUCT.md default).
 - `/test-2/`, `/test-3/`, `/877-2/` keep their URLs (PRODUCT.md default); they are real posts
   ("O nouă provocare profesională!", "BIZZ CLUB", "Alătură-te EduWebLab…"), not duplicates.
