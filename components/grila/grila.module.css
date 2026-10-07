@@ -230,6 +230,8 @@ h3.blockLabel {
 
 .half {
   padding: 20px 24px 48px 0;
+  /* The giant word is sized to this column, not to the window (cqi = 1% of the column's width). */
+  container-type: inline-size;
 }
 
 @media (max-width: 859px) {
@@ -238,13 +240,15 @@ h3.blockLabel {
   }
 }
 
+/* "Software" and "Finanțări" are about 4.1em wide in this font, so 22% of the column always fits
+   one line (4.1 × 22% ≈ 90%). Never broken inside the word. */
 .giantWord {
   margin: 0 0 20px;
-  font-size: clamp(56px, 11vw, 150px);
+  font-size: min(22cqi, 150px);
   font-weight: 800;
   letter-spacing: -0.06em;
   line-height: 0.9;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
 }
 
 .halfAccent .giantWord {
