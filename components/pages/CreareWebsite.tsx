@@ -6,6 +6,61 @@ import { ButtonLink, DashList, Lead, Price, PriceGrid, Prose, Section, ServiceAr
 export const summary =
   "Echipa noastră dedicată de profesioniști în domeniul dezvoltării digitale se angajează să creeze magazine online complet personalizate.";
 
+// "Ce oferim?" — shared with the focused designs' services pages (spec 008).
+export const OFFER = [
+  "Coduri scrise în mod unic pentru generarea de pagini dinamice;",
+  "Adaptabile oricărui domeniu de activitate;",
+  "Coș de produse ușor accesibil și vizibil pe toată perioada navigării;",
+  "Funcționalități nelimitate: status comenzi, gestiune produse, import produse, facturare, modul curier, statistici și rapoarte vânzări;",
+  "Variante de produs (atribute) și filtre de căutare avansată;",
+  "GDPR",
+  "Grafică personalizată",
+  "Design compatibil cu dispozitive mobile",
+  "Panou de administrare",
+  "Galerie foto administrabilă",
+  "Design logo",
+  "Funcție tap to chat button",
+  "Efecte animate",
+  "100% design unic",
+];
+
+// Price packages — shared with the focused designs' services pages (spec 008).
+export const PACKAGES = [
+  {
+    name: "Site prezentare",
+    price: "€400",
+    items: [
+      "Grafică basic",
+      "Design compatibil cu dispozitive mobile",
+      "Până la 5 pagini",
+      "Formular contact",
+      "Informații Contact: Harta Google",
+    ],
+  },
+  {
+    name: "Magazin online",
+    price: "€800",
+    items: [
+      "Grafică standard",
+      "Panou de administrare",
+      "Până la 10 pagini",
+      "Suport tehnic gratuit 30 zile",
+      "Campanii de promovare web, la cerere",
+    ],
+  },
+  {
+    name: "Roboți software",
+    price: "€1200",
+    items: [
+      "Plăți în funcție de numărul și complexitatea roboților",
+      "Procesare facturi și extrase de cont",
+      "Date în sisteme ERP sau CRM",
+      "Generare de rapoarte și analize",
+      "Verificare și validare de informații",
+    ],
+  },
+];
+
 export default function CreareWebsite() {
   return (
     <PageLayout label="Servicii" title="Creare website">
@@ -28,24 +83,7 @@ export default function CreareWebsite() {
       <ButtonLink href="/contact/">Contactează-ne</ButtonLink>
 
       <Section title="Ce oferim?">
-        <DashList
-          items={[
-            "Coduri scrise în mod unic pentru generarea de pagini dinamice;",
-            "Adaptabile oricărui domeniu de activitate;",
-            "Coș de produse ușor accesibil și vizibil pe toată perioada navigării;",
-            "Funcționalități nelimitate: status comenzi, gestiune produse, import produse, facturare, modul curier, statistici și rapoarte vânzări;",
-            "Variante de produs (atribute) și filtre de căutare avansată;",
-            "GDPR",
-            "Grafică personalizată",
-            "Design compatibil cu dispozitive mobile",
-            "Panou de administrare",
-            "Galerie foto administrabilă",
-            "Design logo",
-            "Funcție tap to chat button",
-            "Efecte animate",
-            "100% design unic",
-          ]}
-        />
+        <DashList items={OFFER} />
       </Section>
 
       <ServiceAreas />
@@ -56,39 +94,9 @@ export default function CreareWebsite() {
           funcție de necesitățile fiecărui business în parte.
         </p>
         <PriceGrid>
-          <Price
-            name="Site prezentare"
-            price="€400"
-            items={[
-              "Grafică basic",
-              "Design compatibil cu dispozitive mobile",
-              "Până la 5 pagini",
-              "Formular contact",
-              "Informații Contact: Harta Google",
-            ]}
-          />
-          <Price
-            name="Magazin online"
-            price="€800"
-            items={[
-              "Grafică standard",
-              "Panou de administrare",
-              "Până la 10 pagini",
-              "Suport tehnic gratuit 30 zile",
-              "Campanii de promovare web, la cerere",
-            ]}
-          />
-          <Price
-            name="Roboți software"
-            price="€1200"
-            items={[
-              "Plăți în funcție de numărul și complexitatea roboților",
-              "Procesare facturi și extrase de cont",
-              "Date în sisteme ERP sau CRM",
-              "Generare de rapoarte și analize",
-              "Verificare și validare de informații",
-            ]}
-          />
+          {PACKAGES.map((p) => (
+            <Price key={p.name} {...p} />
+          ))}
         </PriceGrid>
       </Section>
     </PageLayout>

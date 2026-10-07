@@ -1,8 +1,8 @@
-// Which design a request is served in (spec 007). Pure function, used by proxy.ts and unit-tested.
-// Editorial is served from the normal routes; the two candidates from their own page trees under
-// /luminos/ and /nocturn/, while the visitor's address bar keeps the normal URL.
+// Which design a request is served in (specs 007, 008). Pure function, used by proxy.ts and unit-tested.
+// Editorial is served from the normal routes; every other design from its own page tree under
+// /<design>/, while the visitor's address bar keeps the normal URL.
 
-export const DESIGNS = ["editorial", "luminos", "nocturn"] as const;
+export const DESIGNS = ["editorial", "luminos", "nocturn", "grila", "atelier", "ghid"] as const;
 export type Design = (typeof DESIGNS)[number];
 export const DESIGN_COOKIE = "stil";
 
@@ -22,7 +22,9 @@ export function decide(pathname: string, search: string, cookie: string | undefi
     const rest = query.toString();
     return { kind: "redirect", url: pathname + (rest ? `?${rest}` : ""), design: asked };
   }
-  if (/^\/(luminos|nocturn)(\/|$)/.test(pathname)) return { kind: "next" };
-  if (cookie === "luminos" || cookie === "nocturn") return { kind: "rewrite", path: `/${cookie}${pathname}` };
+  if (DESIGNS.some((d) => d !== "editorial" && (pathname === `/${d}` || pathname.startsWith(`/${d}/`)))) {
+    return { kind: "next" };
+  }
+  if (isDesign(cookie) && cookie !== "editorial") return { kind: "rewrite", path: `/${cookie}${pathname}` };
   return { kind: "next" };
 }

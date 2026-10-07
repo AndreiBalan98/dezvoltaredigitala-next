@@ -126,6 +126,17 @@ End-to-end: the screenshots above, sent to the PO together with the live URL.
   newest article in full. The other 11 articles are placeholders.
 - Names: Grilă, Atelier, Ghid (cookie values `grila`, `atelier`, `ghid`). Editorial stays the default.
 - The calculator is a placeholder in the new designs. The placeholder links to it in Editorial.
+- Deviations found while building (recorded after review, 2026-10-07):
+  - Grilă's vermilion is `#c5341a`, not `#d93a1f`: the lighter one is only ~4.0:1 on the tint (below AA).
+  - Shared code lives in `components/focus/` (`data.ts`, `Placeholder.tsx`, `Contents.tsx`,
+    `FooterContent.tsx`) instead of one `components/Placeholder.tsx`. The four service pages and
+    `ServiceAreas` export their lists as constants so the new services pages reuse the same words.
+    Editorial's output is unchanged.
+  - Every design (not only Atelier) shows all 4 services on `/servicii/`, so all three link a service's
+    placeholder to its section there.
+  - New labels besides those named above: "Pe scurt", "Cel mai nou", "Preț", "Include", "Pachet",
+    "Ce include", "Software și digitalizare", "Toate articolele", and the figure labels on Grilă's home
+    (articole, servicii, proiecte finalizate, certificări ISO). Grilă's home figures are counted from the content.
 - Build order if time runs short: Ghid article → Atelier services → Grilă home → the remaining
   designed pages → placeholders.
 

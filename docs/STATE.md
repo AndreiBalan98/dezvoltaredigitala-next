@@ -2,11 +2,11 @@
 
 > Rewritten at the end of every work block. Written for someone returning after **three weeks**.
 
-**Last updated:** 2026-10-06
-**Current milestone:** M4b — Two more designs with their own structure (status: review — waiting for the PO's look-check);
-M4 — Demo ready (built; its final look-check is folded into the same check)
-**Current spec:** docs/specs/007-two-redesigns.md (approved 2026-10-06; replaces spec 006, whose
-colour-only version the PO rejected: "just copies of the first one with different styles")
+**Last updated:** 2026-10-07 (demo day)
+**Current milestone:** M4c — Three focused designs (status: review — waiting for the PO's look-check);
+M4 + M4b (built; their look-check is still open and folded into the same check)
+**Current spec:** docs/specs/008-three-focused-designs.md (approved 2026-10-07). Previous: spec 007
+(Luminos, Nocturn — approved 2026-10-06; replaced spec 006's colour-only version)
 **Branch:** main
 
 ## Where we are
@@ -62,6 +62,27 @@ colour-only version the PO rejected: "just copies of the first one with differen
   - Live checks: `?stil=` sets the cookie (307 → clean URL); the same URL serves the chosen design, also
     for in-app navigation (RSC requests); images and unknown URLs (404) unaffected.
 
+- M4c built (spec 008): **three more designs, each built around one page**, on the same switcher
+  (now 6 tiny words: `Editorial Luminos Nocturn | Grilă Atelier Ghid`).
+  - **Grilă** (home-first, Swiss poster style): giant "Software" / "Finanțări" opening, numbered services
+    index, newest articles as a ruled table, big figures, portfolio mosaic, giant phone number. Vermilion accent.
+  - **Atelier** (services-first, product-catalogue style): `/servicii/` holds all 4 services with a sticky
+    index, checklists, numbered step cards and the website packages as a comparison table. Navy + teal.
+  - **Ghid** (articles-first, public-guide style): the article has breadcrumbs, a "Pe scurt" panel with
+    the key facts and a green "Calculează-ți punctajul" start button, and a sticky "Cuprins". Blue + green.
+  - Each designs 4 pages in full: home, `/servicii/`, the funding list (all 12) and the newest article.
+    Every other URL (11 articles, 4 service pages, calculator, contact, legal) is a **placeholder** in that
+    design: real title, "Această pagină nu a fost refăcută în stilul acesta.", links to the designed pages
+    and to the same page in Editorial.
+  - Code: `app/{grila,atelier,ghid}/`, `components/{grila,atelier,ghid}/`, shared `components/focus/`,
+    `renderFocusPage` in `lib/design-routes.tsx`. Tokens in `app/globals.css`. Fonts Archivo, Instrument
+    Sans, Public Sans (self-hosted via `next/font`, not preloaded — no new package).
+  - Checks: 139 built pages, 8191 internal links, 0 broken; 129 tests (proven red twice: removing a design
+    name → 3 proxy tests fail; changing the placeholder sentence → 3 per-design tests fail).
+    Editorial / Luminos / Nocturn pixel-identical to the live site on article (375 + 1280), list, service
+    page; homes differ only in the switcher row. Reviewed by `spec-reviewer`: pass; its accessibility
+    finding (desktop contents button) fixed.
+
 ## Demo script (7 Oct) — 5 steps
 1. **Laptop, home `/`.** The new look: clean intro, the 3 newest funding articles (they update by
    themselves), the 4 services, ISO certificates and portfolio at the bottom.
@@ -96,8 +117,8 @@ Full list with reasons: `tests/text-changes.mjs` (text) and `REMOVED_IMAGES` in 
 - **Titles:** "Economia circulară", "Start-Up Nation 2025". Non-funding posts are labelled "Noutăți".
 
 ## Next step
-PO's look-check of the three styles (below). After it: M4 + M4b done → the demo (show the switcher).
-After the demo the PO keeps one style; the other two and the switcher are removed (short cleanup). After the demo: promote I0 → I1 and
+PO's look-check of all six styles (below). After it: M4 + M4b done → the demo (show the switcher).
+After the demo the PO keeps one style; the other five and the switcher are removed (short cleanup). After the demo: promote I0 → I1 and
 decide the open questions above.
 
 ## Why the current approach
@@ -113,6 +134,14 @@ decide the open questions above.
 - nothing
 
 ## Blocked on the human
+- **PO LOOK-CHECK (M4c — the three new designs).** Takes ~10 minutes. Do this one first.
+  1. On your **laptop**, open https://dezvoltaredigitala-next.vercel.app/ . In the small words at the top
+     right, click **Grilă**. Look at the home page, then the menu → Servicii, Finanțări nerambursabile, and
+     the first article. Go back to the home page (logo) and do the same for **Atelier** and **Ghid**.
+  2. For each one, look hardest at its focus page: Grilă → home, Atelier → Servicii, Ghid → the article.
+  3. On your **phone**, open the same three focus pages.
+  Done looks like: you name the style(s) you like, or what to change. Other pages show a "not remade"
+  placeholder — that is expected.
 - **PO LOOK-CHECK (M4 + M4b).** Takes ~10 minutes.
   1. On your **laptop**, open https://dezvoltaredigitala-next.vercel.app/ . In the small words at the
      top right, click **Luminos**; open the newest article, the funding list and the calculator. Go back
@@ -124,6 +153,8 @@ decide the open questions above.
   or name what to change.
 
 ## Decisions made since last review
+- PO: three more designs on the same switcher, each built around one page (home / services / articles),
+  all four pages designed in each, the rest placeholders (2026-10-07, spec 008).
 - PO: two more designs, inspired by Apple and Linear (rejected "Instituțional/Tehnic", then rejected the
   colour-only version: wants a different structure — spec 007); switcher tiny, top right, home page only
   (2026-10-06). Nocturn is dark by the PO's choice.

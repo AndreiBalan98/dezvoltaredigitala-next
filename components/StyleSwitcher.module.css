@@ -1,11 +1,23 @@
-/* Design switcher (spec 007): three tiny, quiet links. Each design places it at its top right. */
+/* Design switcher (specs 007, 008): six tiny, quiet links in two groups. Each design places it at its
+   top right. On narrow phones the second group wraps under the first. */
 
 .switcher {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: 2px;
   font-size: 11px;
   line-height: 1;
+}
+
+.group {
+  display: flex;
+  gap: 2px;
+}
+
+.group + .group {
+  border-left: 1px solid var(--line);
+  padding-left: 2px;
 }
 
 .option {

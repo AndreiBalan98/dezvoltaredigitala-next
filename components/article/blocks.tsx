@@ -94,19 +94,29 @@ export function PriceGrid({ children }: Children) {
   return <div className={styles.prices}>{children}</div>;
 }
 
-/** The six service areas listed on every service page of the old site (no icons). */
+/** The six service areas listed on every service page of the old site (no icons). Also shown by the
+ * focused designs' services pages (spec 008). */
+export const SERVICE_AREAS = [
+  { title: "Website", text: "Dezvoltare website-uri, e-commerce și software specializat" },
+  {
+    title: "Analiză tehnică",
+    text: "Servicii de analiză pentru identificarea soluțiilor tehnice necesare digitalizării afacerii",
+  },
+  { title: "CRM", text: "CRM (Customer Relationship Management)" },
+  { title: "Gestiune", text: "Soluții pentru gestiune financiară, gestiunea furnizorilor, resurse umane, logistică" },
+  { title: "IoT", text: "Implementare tehnologii de tip IoT (Internet of Things), AI (Artificial Intelligence)" },
+  { title: "Cloud", text: "Servicii de tip Cloud Computing și securitate cibernetică" },
+];
+
 export function ServiceAreas() {
   return (
     <Section title="Servicii diversificate">
       <FactGrid>
-        <Fact title="Website">Dezvoltare website-uri, e-commerce și software specializat</Fact>
-        <Fact title="Analiză tehnică">
-          Servicii de analiză pentru identificarea soluțiilor tehnice necesare digitalizării afacerii
-        </Fact>
-        <Fact title="CRM">CRM (Customer Relationship Management)</Fact>
-        <Fact title="Gestiune">Soluții pentru gestiune financiară, gestiunea furnizorilor, resurse umane, logistică</Fact>
-        <Fact title="IoT">Implementare tehnologii de tip IoT (Internet of Things), AI (Artificial Intelligence)</Fact>
-        <Fact title="Cloud">Servicii de tip Cloud Computing și securitate cibernetică</Fact>
+        {SERVICE_AREAS.map((a) => (
+          <Fact key={a.title} title={a.title}>
+            {a.text}
+          </Fact>
+        ))}
       </FactGrid>
     </Section>
   );

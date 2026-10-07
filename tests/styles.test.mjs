@@ -1,4 +1,5 @@
-// Three designs: Editorial (default), Luminos and Nocturn, each with its own structure (spec 007).
+// Six designs: Editorial (default), Luminos and Nocturn, each with its own structure (spec 007), and
+// Grilă, Atelier and Ghid, which design four pages and show a placeholder for the rest (spec 008).
 // Reads the build output, so it runs after `npm run build`.
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -42,6 +43,19 @@ test("?stil= stores the design and redirects to the clean URL, keeping other par
 
 test("the designs' own addresses are not rewritten twice", () => {
   assert.deepEqual(decide("/luminos/contact/", "", "nocturn"), { kind: "next" });
+  assert.deepEqual(decide("/ghid/servicii/", "", "atelier"), { kind: "next" });
+});
+
+test("focused designs (spec 008): the cookie serves their page trees", () => {
+  assert.deepEqual(decide("/servicii/", "", "atelier"), { kind: "rewrite", path: "/atelier/servicii/" });
+  assert.deepEqual(decide("/", "", "grila"), { kind: "rewrite", path: "/grila/" });
+  assert.deepEqual(decide("/", "?stil=ghid", undefined), { kind: "redirect", url: "/", design: "ghid" });
+});
+
+test("an article whose address starts like a design name is still rewritten", () => {
+  const guide = "/ghidul-incepatorului-in-accesarea-fondurilor-europene-ce-trebuie-sa-stii-inainte-sa-aplici/";
+  assert.deepEqual(decide(guide, "", "ghid"), { kind: "rewrite", path: `/ghid${guide}` });
+  assert.deepEqual(decide(guide, "", undefined), { kind: "next" });
 });
 
 // --- Every page exists in every design ---
@@ -58,6 +72,38 @@ for (const design of ["luminos", "nocturn"]) {
   });
 }
 
+// --- Focused designs: four designed pages, a placeholder for every other URL ---
+const DESIGNED = ["/", "/servicii/", "/finantari-nerambursabile/", "/finantare-sisteme-stocare-energie/"];
+const postPaths = readdirSync(root("content/posts"))
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => JSON.parse(readFileSync(root(`content/posts/${f}`), "utf8")).path);
+const PLACEHOLDER = "Această pagină nu a fost refăcută în stilul acesta.";
+
+for (const design of ["grila", "atelier", "ghid"]) {
+  test(`${design}: every URL renders in the design — the 4 designed pages in full, the rest as placeholders`, () => {
+    for (const p of [...new Set(["/", ...paths])]) {
+      const file = built(`/${design}${p}`);
+      assert.ok(existsSync(root(file)), `${file} missing — run \`npm run build\` first`);
+      const html = readFileSync(root(file), "utf8");
+      assert.match(html, new RegExp(`data-stil="${design}"`), `${p} is not in the ${design} frame`);
+      assert.match(html, /<h1[^>]*>/, `${p} has no h1`);
+      assert.match(html, /noindex/, `${p} can be indexed`);
+      if (DESIGNED.includes(p)) assert.ok(!html.includes(PLACEHOLDER), `${p} should be designed in full`);
+      else assert.ok(html.includes(PLACEHOLDER), `${p} should be a placeholder`);
+    }
+  });
+
+  test(`${design}: services page shows all four services, the list links every post`, () => {
+    const services = visible(read(`/${design}/servicii/`));
+    for (const id of ["consultanta-fonduri", "consultanta-it", "digitalizare", "creare-website"]) {
+      assert.match(services, new RegExp(`id="${id}"`), id);
+    }
+    assert.match(services, /€1200/);
+    const list = visible(read(`/${design}/finantari-nerambursabile/`));
+    for (const p of postPaths) assert.ok(list.includes(`href="${p}"`), `${p} missing from the list`);
+  });
+}
+
 test("Editorial pages carry no candidate design", () => {
   for (const p of paths) assert.doesNotMatch(read(p), /data-stil=/, p);
 });
@@ -68,23 +114,20 @@ const visible = (html) => html.replace(/<script[\s\S]*?<\/script>/g, "");
 const switcher = (html) =>
   [...visible(html).matchAll(/<a[^>]*href="\/\?stil=(\w+)"[^>]*>/g)].map((m) => [m[1], m[0].includes('aria-current="true"')]);
 
-for (const [design, home] of [
-  ["editorial", "/"],
-  ["luminos", "/luminos/"],
-  ["nocturn", "/nocturn/"],
-]) {
-  test(`${design} home has the switcher with ${design} marked`, () => {
-    assert.deepEqual(switcher(read(home)), [
-      ["editorial", design === "editorial"],
-      ["luminos", design === "luminos"],
-      ["nocturn", design === "nocturn"],
-    ]);
+const ALL = ["editorial", "luminos", "nocturn", "grila", "atelier", "ghid"];
+for (const design of ALL) {
+  const home = design === "editorial" ? "/" : `/${design}/`;
+  test(`${design} home has the six-word switcher with ${design} marked`, () => {
+    assert.deepEqual(
+      switcher(read(home)),
+      ALL.map((d) => [d, d === design]),
+    );
   });
 }
 
 test("the switcher is not on other pages (PO decision)", () => {
-  for (const p of ["/contact/", "/luminos/contact/", "/nocturn/contact/"]) {
-    assert.doesNotMatch(visible(read(p)), /\?stil=/, p);
+  for (const p of ["/contact/", ...ALL.slice(1).map((d) => `/${d}/contact/`), "/ghid/servicii/"]) {
+    assert.doesNotMatch(visible(read(p)), /href="\/\?stil=/, p);
   }
 });
 
@@ -102,6 +145,9 @@ const STYLES = {
   editorial,
   luminos: { ...editorial, ...tokens('[data-stil="luminos"]') },
   nocturn: { ...editorial, ...tokens('[data-stil="nocturn"]') },
+  grila: { ...editorial, ...tokens('[data-stil="grila"]') },
+  atelier: { ...editorial, ...tokens('[data-stil="atelier"]') },
+  ghid: { ...editorial, ...tokens('[data-stil="ghid"]') },
 };
 
 function hex(t, name) {

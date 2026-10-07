@@ -122,6 +122,140 @@ body:has(> [data-stil="nocturn"]) {
   background: #08090a;
 }
 
+/* Focused designs (spec 008). Same mechanism: tokens restyle the shared blocks, components/grila,
+   components/atelier and components/ghid build the frames. */
+
+/* "Grilă" — Swiss poster style: white, black, thick rules, one vermilion accent. */
+[data-stil="grila"] {
+  --accent: #c5341a;
+  --accent-dark: #9e2a15;
+  --tint: #f1f0ec;
+  --line: #111111;
+  --muted: #5a5a5a;
+  --text: #111111;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --button-bg: #111111;
+  --button-text: #ffffff;
+  --button-hover: #c5341a;
+  --radius-control: 0;
+  --radius: 0;
+  --card-border: 2px solid #111111;
+
+  --font: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-archivo), "Helvetica Neue", Arial, sans-serif;
+  --body-size: 17px;
+  --body-line: 1.6;
+  --heading-space: 64px;
+}
+
+/* "Atelier" — product-catalogue style: warm off-white, navy text, teal accent, hairline panels. */
+[data-stil="atelier"] {
+  --accent: #0a6b66;
+  --accent-dark: #08524e;
+  --tint: #efece5;
+  --line: #dcd8ce;
+  --muted: #4d586b;
+  --text: #0f1d3a;
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --button-bg: #0f1d3a;
+  --button-text: #ffffff;
+  --button-hover: #0a6b66;
+  --radius-control: 6px;
+  --radius: 10px;
+  --card-border: 1px solid var(--line);
+
+  --font: var(--font-instrument), system-ui, sans-serif;
+  --font-heading: var(--font-instrument), system-ui, sans-serif;
+  --body-size: 17px;
+  --body-line: 1.65;
+  --heading-space: 56px;
+}
+
+/* "Ghid" — public-guide style: plain white, near-black text, underlined blue links, green buttons. */
+[data-stil="ghid"] {
+  --accent: #1d70b8;
+  --accent-dark: #003078;
+  --tint: #f3f2f1;
+  --line: #b1b4b6;
+  --muted: #505a5f;
+  --text: #0b0c0c;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --button-bg: #00703c;
+  --button-text: #ffffff;
+  --button-hover: #005a30;
+  --radius-control: 0;
+  --radius: 0;
+  --card-border: 1px solid var(--line);
+
+  --font: var(--font-public), Arial, sans-serif;
+  --font-heading: var(--font-public), Arial, sans-serif;
+  --body-size: 19px;
+  --body-line: 1.6;
+  --heading-space: 48px;
+}
+
+[data-stil="grila"] h1,
+[data-stil="grila"] h2,
+[data-stil="grila"] h3 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+[data-stil="atelier"] h1,
+[data-stil="atelier"] h2,
+[data-stil="atelier"] h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+[data-stil="ghid"] h1,
+[data-stil="ghid"] h2,
+[data-stil="ghid"] h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* :where() keeps this weaker than any class, so buttons stay without underline. */
+:where([data-stil="ghid"]) a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Public-guide focus: a thick yellow highlight that shows on any background. */
+[data-stil="ghid"] a:focus-visible,
+[data-stil="ghid"] button:focus-visible {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+  background: #ffdd00;
+  color: #0b0c0c;
+  box-shadow: 0 4px 0 #0b0c0c;
+}
+
+[data-stil="grila"],
+[data-stil="atelier"],
+[data-stil="ghid"] {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+
+body:has(> [data-stil="grila"]),
+body:has(> [data-stil="ghid"]) {
+  background: #ffffff;
+}
+
+body:has(> [data-stil="atelier"]) {
+  background: #fbfaf7;
+}
+
 *,
 *::before,
 *::after {
@@ -148,8 +282,14 @@ body {
   }
 
   [data-stil="luminos"],
-  [data-stil="nocturn"] {
+  [data-stil="nocturn"],
+  [data-stil="grila"],
+  [data-stil="atelier"] {
     font-size: 16px;
+  }
+
+  [data-stil="ghid"] {
+    font-size: 17px;
   }
 }
 
