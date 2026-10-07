@@ -66,6 +66,16 @@ switching from the home page (spec 007; spec 006's colour-only version was rejec
 - [x] `tests/styles.test.mjs`: proxy rules, every page per design, switcher placement, AA contrast
 - [ ] **PO LOOK-CHECK** of the three designs on phone and laptop
 
+## M4c — Three focused designs · status: building · ~4 h
+**Outcome:** three more designs on the same switcher — Grilă (home-first), Atelier (services-first),
+Ghid (articles-first) — each fully designing home, `/servicii/`, the funding list and the newest
+article; every other URL is a placeholder in that design (spec 008).
+**Definition of Done:**
+- [ ] the 4 pages in each of the 3 designs; placeholders for the other 19 URLs, none 404
+- [ ] Editorial, Luminos and Nocturn unchanged apart from the switcher row
+- [ ] `tests/styles.test.mjs`: proxy rules for the new names, every URL per design, 6-word switcher, AA contrast
+- [ ] **PO LOOK-CHECK** of the three new designs on phone and laptop
+
 ## After the demo (not now)
 Promote I0 → I1 (branches + PRs), contact form, production hosting decision, domain switch with the
 old site kept as fallback, delete `/test-3/`-style slugs with redirects.
